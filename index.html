@@ -20,6 +20,8 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
 .fix-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px} .bad-answer,.good-answer{padding:13px;border-radius:14px;display:flex;flex-direction:column;gap:4px} .bad-answer{background:#fff0f2;border:2px solid #ffd0d6} .good-answer{background:#edfff6;border:2px solid #bcefd3} .meaning-strip{margin-top:10px;background:#fff9d9;padding:10px;border-radius:12px;font-weight:800}
 .practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .practice-card{border-radius:18px;padding:15px;background:linear-gradient(180deg,#fff,#fbfaff);border:2px solid #eee8ff} .practice-meta{font-size:12px;text-transform:uppercase;font-weight:900;color:#6a4ed4} .practice-q{font-weight:850;font-size:16px;margin:10px 0 12px;min-height:46px} .reveal{border:0;border-radius:12px;padding:9px 12px;background:#6548dc;color:white;font-weight:900;cursor:pointer} .practice-answer{display:none;margin-top:10px;padding:9px;border-radius:12px;background:#edfff6;font-weight:900}
 .weekend .practice-card{border-color:#dbefff} .weekend .practice-meta{color:#3175aa} .weekend .reveal{background:#3e91c9}
+.word-bank{background:linear-gradient(135deg,#f0efff,#fff0f7);border:2px dashed #b8a6f2;border-radius:18px;padding:16px 18px;margin:16px 0} .word-bank-title{font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#5136bf;margin-bottom:10px} .word-bank-list{display:flex;flex-wrap:wrap;gap:8px} .word-chip{background:white;border:2px solid #ddd4ff;border-radius:999px;padding:6px 14px;font-weight:800;color:#42306e;font-size:14px}
+.shuffle-btn{border:0;border-radius:999px;padding:8px 16px;background:#ff6fa9;color:white;font-weight:900;cursor:pointer;font-size:13px;margin-left:10px}
 .recreated-page{background:var(--paper);border:1px solid #ddd5c6;border-radius:12px;padding:26px;margin:18px auto;max-width:900px;box-shadow:0 9px 22px #6d624c1f;position:relative} .page-topline{display:flex;justify-content:space-between;border-bottom:2px solid #283244;padding-bottom:7px;font-size:12px;font-weight:900;letter-spacing:.08em} .recreated-page h3{font-family:Georgia,serif;font-size:34px;text-align:center;margin:18px 0 4px;color:#111} .page-sub{text-align:center;font-family:Georgia,serif;font-size:15px;margin-bottom:17px;color:#444} .root-note{background:#ececec;border-left:6px solid #777;padding:12px;margin:12px 0 18px;font-family:Georgia,serif}
 .book-dictionary-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px} .book-entry{padding:8px 0;border-bottom:1px solid #ddd} .book-word{font-family:Georgia,serif;font-size:21px;font-weight:900} .book-meaning,.book-example,.book-syn{font-family:Georgia,serif;font-size:14px;line-height:1.45} .book-example{font-style:italic;margin-top:5px} .book-syn{font-size:12px;margin-top:4px}
 .book-questions{display:flex;flex-direction:column;gap:10px} .text-q{display:grid;grid-template-columns:32px 1fr;gap:8px;font-family:Georgia,serif;border-bottom:1px dotted #bbb;padding-bottom:9px} .qnum{font-weight:900} .qprompt{line-height:1.45} .sarah-note,.pair-answer{margin-top:5px;color:#6e5a88;font-family:"Trebuchet MS",sans-serif;font-weight:800;font-size:13px} .paired-q{padding:10px;border-bottom:1px dotted #bbb;font-family:Georgia,serif} .reading-box{font-family:Georgia,serif;line-height:1.6;background:white;border:1px solid #e0ddd5;padding:18px;border-radius:8px;margin-bottom:18px}
@@ -172,7 +174,9 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
     </article>
     </section>
 
-<section class="section" id="today-practice"><div class="kicker">Practice for today</div><h2>🎮 3 similar questions for every mistake</h2><p>Try each question without looking at the correction above. Then use <b>Check answer</b>.</p><div class="practice-grid">
+<section class="section" id="today-practice"><div class="kicker">Practice for today</div><h2>🎮 3 similar questions for every mistake</h2><p>Read each sentence, pick the word from the bank below that fits best, then use <b>Check answer</b> to see if you were right. <button class="shuffle-btn" onclick="shuffleGrid('today-grid')">🔀 Shuffle order</button></p>
+<div class="word-bank"><div class="word-bank-title">📦 Word bank — 11 words, use each one more than once</div><div class="word-bank-list"><span class="word-chip">agenda</span><span class="word-chip">circumstance</span><span class="word-chip">composition</span><span class="word-chip">constant</span><span class="word-chip">deficient</span><span class="word-chip">deposit</span><span class="word-chip">facsimile</span><span class="word-chip">impermanent</span><span class="word-chip">stationary</span><span class="word-chip">suffice</span><span class="word-chip">transact</span></div></div>
+<div class="practice-grid" id="today-grid">
         <div class="practice-card">
           <div class="practice-meta">Practice Question 1</div>
           <div class="practice-q">The company plans to ___ business with stores in Canada.</div>
@@ -786,7 +790,9 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
     
 </section>
 
-<section class="section weekend" id="weekend"><div class="kicker">Save for the weekend</div><h2>🌈 5 extra similar questions for every missed item</h2><p>These 60 questions are intentionally separate from today's homework. Use them for quick reinforcement over the weekend.</p><div class="practice-grid">
+<section class="section weekend" id="weekend"><div class="kicker">Save for the weekend</div><h2>🌈 5 extra similar questions for every missed item</h2><p>These 60 questions are intentionally separate from today's homework. Use them for quick reinforcement over the weekend. <button class="shuffle-btn" onclick="shuffleGrid('weekend-grid')">🔀 Shuffle order</button></p>
+<div class="word-bank"><div class="word-bank-title">📦 Word bank — same 11 words, use each one more than once</div><div class="word-bank-list"><span class="word-chip">agenda</span><span class="word-chip">circumstance</span><span class="word-chip">composition</span><span class="word-chip">constant</span><span class="word-chip">deficient</span><span class="word-chip">deposit</span><span class="word-chip">facsimile</span><span class="word-chip">impermanent</span><span class="word-chip">stationary</span><span class="word-chip">suffice</span><span class="word-chip">transact</span></div></div>
+<div class="practice-grid" id="weekend-grid">
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 1</div>
           <div class="practice-q">The shop can ___ business even when the owner is away.</div>
@@ -1155,5 +1161,16 @@ function toggleAnswer(id) {
   const el=document.getElementById(id);
   el.style.display=(el.style.display==='block')?'none':'block';
 }
+function shuffleGrid(gridId) {
+  const grid = document.getElementById(gridId);
+  const cards = Array.from(grid.children);
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  cards.forEach(card => grid.appendChild(card));
+}
+shuffleGrid('today-grid');
+shuffleGrid('weekend-grid');
 </script>
 </body></html>
