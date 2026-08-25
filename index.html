@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sarah's Vocabulary Homework Adventure</title>
+<style>
+:root{--ink:#24324a;--purple:#6f4ef6;--pink:#ff6fa9;--blue:#52b7ff;--green:#2eb67d;--yellow:#ffd45a;--paper:#fffdf7;}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:"Trebuchet MS","Avenir Next","Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(135deg,#fff7fb,#f2fbff 48%,#fffbea)}
+header{padding:32px 18px 18px}
+.hero{max-width:1180px;margin:auto;background:linear-gradient(135deg,#6f4ef6,#ff6fa9);color:#fff;border-radius:30px;padding:34px;box-shadow:0 18px 42px #7b67a82b;position:relative;overflow:hidden}
+.hero:after{content:"★ ✦ ★";position:absolute;right:26px;top:18px;font-size:34px;opacity:.25}
+h1{font-size:clamp(34px,6vw,62px);line-height:1;margin:0 0 12px} .hero p{font-size:18px;max-width:820px}
+main{max-width:1180px;margin:auto;padding:0 18px 70px}
+nav{position:sticky;top:6px;z-index:50;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0 22px}
+nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;padding:9px 14px;border-radius:999px;box-shadow:0 6px 16px #6c5d9a20}
+.section{background:#ffffffeb;border-radius:26px;padding:25px;margin:22px 0;box-shadow:0 10px 28px #52627a17}
+.kicker{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--purple)} h2{font-size:30px;margin:5px 0 12px}
+.today-banner{background:linear-gradient(135deg,#fff4c7,#ffe8f3);border:2px solid #ffd66e;padding:18px;border-radius:20px;font-size:18px;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px} .stat{background:#f5f2ff;border-radius:18px;padding:16px;text-align:center} .stat strong{display:block;font-size:32px;color:var(--purple)}
+.fix-card{border:2px solid #eee8ff;border-radius:20px;padding:16px;margin:14px 0;background:white} .fix-top{display:flex;justify-content:space-between;gap:10px;align-items:center} .mistake-num,.fix-word{font-weight:900;padding:6px 10px;border-radius:999px} .mistake-num{background:#eef6ff} .fix-word{background:#eee7ff;color:#5d3bd1} .fix-prompt{font-size:18px;font-weight:800;margin:13px 0}
+.fix-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px} .bad-answer,.good-answer{padding:13px;border-radius:14px;display:flex;flex-direction:column;gap:4px} .bad-answer{background:#fff0f2;border:2px solid #ffd0d6} .good-answer{background:#edfff6;border:2px solid #bcefd3} .meaning-strip{margin-top:10px;background:#fff9d9;padding:10px;border-radius:12px;font-weight:800}
+.practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .practice-card{border-radius:18px;padding:15px;background:linear-gradient(180deg,#fff,#fbfaff);border:2px solid #eee8ff} .practice-meta{font-size:12px;text-transform:uppercase;font-weight:900;color:#6a4ed4} .practice-q{font-weight:850;font-size:16px;margin:10px 0 12px;min-height:46px} .reveal{border:0;border-radius:12px;padding:9px 12px;background:#6548dc;color:white;font-weight:900;cursor:pointer} .practice-answer{display:none;margin-top:10px;padding:9px;border-radius:12px;background:#edfff6;font-weight:900}
+.weekend .practice-card{border-color:#dbefff} .weekend .practice-meta{color:#3175aa} .weekend .reveal{background:#3e91c9}
+.recreated-page{background:var(--paper);border:1px solid #ddd5c6;border-radius:12px;padding:26px;margin:18px auto;max-width:900px;box-shadow:0 9px 22px #6d624c1f;position:relative} .page-topline{display:flex;justify-content:space-between;border-bottom:2px solid #283244;padding-bottom:7px;font-size:12px;font-weight:900;letter-spacing:.08em} .recreated-page h3{font-family:Georgia,serif;font-size:34px;text-align:center;margin:18px 0 4px;color:#111} .page-sub{text-align:center;font-family:Georgia,serif;font-size:15px;margin-bottom:17px;color:#444} .root-note{background:#ececec;border-left:6px solid #777;padding:12px;margin:12px 0 18px;font-family:Georgia,serif}
+.book-dictionary-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px} .book-entry{padding:8px 0;border-bottom:1px solid #ddd} .book-word{font-family:Georgia,serif;font-size:21px;font-weight:900} .book-meaning,.book-example,.book-syn{font-family:Georgia,serif;font-size:14px;line-height:1.45} .book-example{font-style:italic;margin-top:5px} .book-syn{font-size:12px;margin-top:4px}
+.book-questions{display:flex;flex-direction:column;gap:10px} .text-q{display:grid;grid-template-columns:32px 1fr;gap:8px;font-family:Georgia,serif;border-bottom:1px dotted #bbb;padding-bottom:9px} .qnum{font-weight:900} .qprompt{line-height:1.45} .sarah-note,.pair-answer{margin-top:5px;color:#6e5a88;font-family:"Trebuchet MS",sans-serif;font-weight:800;font-size:13px} .paired-q{padding:10px;border-bottom:1px dotted #bbb;font-family:Georgia,serif} .reading-box{font-family:Georgia,serif;line-height:1.6;background:white;border:1px solid #e0ddd5;padding:18px;border-radius:8px;margin-bottom:18px}
+.book-jumps{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0} .book-jumps a{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:#eee8ff;text-decoration:none;color:#5136bf;font-weight:900}
+.rule{font-size:22px;font-weight:900;text-align:center;background:linear-gradient(135deg,#fff0f7,#f0efff);padding:18px;border-radius:18px;margin:16px 0}
+.small{font-size:13px;color:#667085}
+@media(max-width:850px){.stats,.practice-grid{grid-template-columns:repeat(2,1fr)}.book-dictionary-grid,.fix-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.stats,.practice-grid{grid-template-columns:1fr}.section{padding:18px}}
+@media print{nav,.reveal{display:none} body{background:white} .section,.recreated-page,.hero{box-shadow:none} .practice-answer{display:block}}
+</style></head><body>
+<header><div class="hero">
+<div style="font-size:38px">📚✨🧠🎯</div>
+<h1>Sarah's Vocabulary Homework Adventure</h1>
+<p>Everything here is organized for today's homework first: the recreated textbook pages, the mistakes to fix, and 3 targeted practice questions for every missed item. Weekend practice is included separately for later.</p>
+</div></header>
+<main>
+<nav><a href="#today">Today</a><a href="#fix">Fix mistakes</a><a href="#today-practice">36 practice questions</a><a href="#book">Recreated textbook</a><a href="#weekend">Weekend practice</a></nav>
+
+<section class="section" id="today">
+<div class="kicker">Today's homework</div><h2>🚀 Finish everything important today</h2>
+<div class="today-banner">No multi-week study schedule. Today's goal is simple: <b>fix the 12 missed questions</b>, then complete <b>3 similar questions for each mistake</b>. That's 36 targeted questions today.</div>
+<div class="stats">
+<div class="stat"><strong>12</strong>mistakes to fix</div>
+<div class="stat"><strong>36</strong>practice questions today</div>
+<div class="stat"><strong>12</strong>recreated textbook pages</div>
+<div class="stat"><strong>60</strong>weekend questions saved for later</div>
+</div>
+<div class="rule">⭐ Before answering: “Does my answer PROVE the vocabulary meaning?” ⭐</div>
+</section>
+
+<section class="section" id="fix"><div class="kicker">Correction zone</div><h2>🛠️ Fix all 12 missed questions</h2>
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 1</span><span class="fix-word">transact</span></div>
+      <div class="fix-prompt">If the bank chooses to transact its business overseas, then...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>it might get popular</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>it will conduct or carry on business in another country.</span></div>
+      </div>
+      <div class="meaning-strip">💡 transact = conduct business</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 2</span><span class="fix-word">suffice</span></div>
+      <div class="fix-prompt">A cup of sugar did not suffice for the recipe, but...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>at least we won&#x27;t get cavities</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>we needed more sugar because one cup was not enough.</span></div>
+      </div>
+      <div class="meaning-strip">💡 suffice = be enough</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 3</span><span class="fix-word">deficient</span></div>
+      <div class="fix-prompt">Billy does not eat enough vegetables, so he is deficient in...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>healthiness</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>vitamins or nutrients.</span></div>
+      </div>
+      <div class="meaning-strip">💡 deficient = lacking / not enough</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 4</span><span class="fix-word">facsimile</span></div>
+      <div class="fix-prompt">We knew that the document was a facsimile of the original contract, rather than...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>being special</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>the original contract.</span></div>
+      </div>
+      <div class="meaning-strip">💡 facsimile = a copy or imitation</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 5</span><span class="fix-word">agenda</span></div>
+      <div class="fix-prompt">If the half-hour meeting lasts two hours, it probably means the agenda...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>is short</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>is too long or has too many items.</span></div>
+      </div>
+      <div class="meaning-strip">💡 agenda = a list of things to discuss</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 6</span><span class="fix-word">composition</span></div>
+      <div class="fix-prompt">Geologists studied the composition of the mysterious rock because...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>it looked cool</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>they wanted to know what it was made of.</span></div>
+      </div>
+      <div class="meaning-strip">💡 composition = what something is made of</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 7</span><span class="fix-word">deposit</span></div>
+      <div class="fix-prompt">We wanted to deposit all the Halloween candy...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>we wanted a snack</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>in a container, cupboard, or safe place.</span></div>
+      </div>
+      <div class="meaning-strip">💡 deposit = put/place/leave</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 8</span><span class="fix-word">impermanent</span></div>
+      <div class="fix-prompt">We learned how impermanent sand castles could be when...</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>we went to the beach</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>the waves washed them away.</span></div>
+      </div>
+      <div class="meaning-strip">💡 impermanent = temporary / not lasting</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 9</span><span class="fix-word">stationary</span></div>
+      <div class="fix-prompt">The storm system is currently ___ and will probably not move for several more days.</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>constant</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>stationary</span></div>
+      </div>
+      <div class="meaning-strip">💡 stationary = not moving</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 10</span><span class="fix-word">constant</span></div>
+      <div class="fix-prompt">The economy seems to change all the time; it is difficult to find any kind of ___ in it.</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>stationary</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>constant</span></div>
+      </div>
+      <div class="meaning-strip">💡 constant = staying the same</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 11</span><span class="fix-word">composition</span></div>
+      <div class="fix-prompt">Although various kinds of pollution are dumped into the ocean each year, its ___ remains basically the same.</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>circumstance</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>composition</span></div>
+      </div>
+      <div class="meaning-strip">💡 composition = makeup / what it is made of</div>
+    </article>
+    
+    <article class="fix-card">
+      <div class="fix-top"><span class="mistake-num">Mistake 12</span><span class="fix-word">circumstance</span></div>
+      <div class="fix-prompt">When we thought about the ___ that had caused our financial problems, we realized what we should have done differently.</div>
+      <div class="fix-grid">
+        <div class="bad-answer"><b>Sarah wrote</b><span>composition</span></div>
+        <div class="good-answer"><b>Correct / stronger answer</b><span>circumstance</span></div>
+      </div>
+      <div class="meaning-strip">💡 circumstance = situation or condition around an event</div>
+    </article>
+    </section>
+
+<section class="section" id="today-practice"><div class="kicker">Practice for today</div><h2>🎮 3 similar questions for every mistake</h2><p>Try each question without looking at the correction above. Then use <b>Check answer</b>.</p><div class="practice-grid">
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 1</div>
+          <div class="practice-q">The company plans to ___ business with stores in Canada.</div>
+          <button class="reveal" onclick="toggleAnswer('today-1')">Check answer</button>
+          <div class="practice-answer" id="today-1">transact</div>
+        </div>
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 2</div>
+          <div class="practice-q">Banks use secure systems to ___ business online.</div>
+          <button class="reveal" onclick="toggleAnswer('today-2')">Check answer</button>
+          <div class="practice-answer" id="today-2">transact</div>
+        </div>
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 3</div>
+          <div class="practice-q">If two companies ___ business, they are conducting business with each other.</div>
+          <button class="reveal" onclick="toggleAnswer('today-3')">Check answer</button>
+          <div class="practice-answer" id="today-3">transact</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 1</div>
+          <div class="practice-q">One bottle of water may not ___ for a whole soccer game.</div>
+          <button class="reveal" onclick="toggleAnswer('today-4')">Check answer</button>
+          <div class="practice-answer" id="today-4">suffice</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 2</div>
+          <div class="practice-q">A short answer will ___ if it explains the idea clearly.</div>
+          <button class="reveal" onclick="toggleAnswer('today-5')">Check answer</button>
+          <div class="practice-answer" id="today-5">suffice</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 3</div>
+          <div class="practice-q">Will three chairs ___ for all the guests?</div>
+          <button class="reveal" onclick="toggleAnswer('today-6')">Check answer</button>
+          <div class="practice-answer" id="today-6">suffice</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 1</div>
+          <div class="practice-q">Someone who does not get enough iron may be ___ in iron.</div>
+          <button class="reveal" onclick="toggleAnswer('today-7')">Check answer</button>
+          <div class="practice-answer" id="today-7">deficient</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 2</div>
+          <div class="practice-q">The soil was ___ in nutrients, so the plants grew poorly.</div>
+          <button class="reveal" onclick="toggleAnswer('today-8')">Check answer</button>
+          <div class="practice-answer" id="today-8">deficient</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 3</div>
+          <div class="practice-q">A diet that lacks vitamin C is ___ in vitamin C.</div>
+          <button class="reveal" onclick="toggleAnswer('today-9')">Check answer</button>
+          <div class="practice-answer" id="today-9">deficient</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 1</div>
+          <div class="practice-q">The museum displayed a ___ of the ancient letter so visitors could touch it.</div>
+          <button class="reveal" onclick="toggleAnswer('today-10')">Check answer</button>
+          <div class="practice-answer" id="today-10">facsimile</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 2</div>
+          <div class="practice-q">A photocopy is a ___ of the original document.</div>
+          <button class="reveal" onclick="toggleAnswer('today-11')">Check answer</button>
+          <div class="practice-answer" id="today-11">facsimile</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 3</div>
+          <div class="practice-q">The actor signed a ___ instead of the real historical paper.</div>
+          <button class="reveal" onclick="toggleAnswer('today-12')">Check answer</button>
+          <div class="practice-answer" id="today-12">facsimile</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 1</div>
+          <div class="practice-q">The meeting lasted too long because the ___ had too many items.</div>
+          <button class="reveal" onclick="toggleAnswer('today-13')">Check answer</button>
+          <div class="practice-answer" id="today-13">agenda</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 2</div>
+          <div class="practice-q">Please add &#x27;field trip plans&#x27; to tomorrow&#x27;s meeting ___.</div>
+          <button class="reveal" onclick="toggleAnswer('today-14')">Check answer</button>
+          <div class="practice-answer" id="today-14">agenda</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 3</div>
+          <div class="practice-q">The first item on our ___ is choosing a team captain.</div>
+          <button class="reveal" onclick="toggleAnswer('today-15')">Check answer</button>
+          <div class="practice-answer" id="today-15">agenda</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 1</div>
+          <div class="practice-q">Scientists tested the ___ of the water to learn what chemicals were in it.</div>
+          <button class="reveal" onclick="toggleAnswer('today-16')">Check answer</button>
+          <div class="practice-answer" id="today-16">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 2</div>
+          <div class="practice-q">The ___ of a salad includes lettuce, tomatoes, and cucumbers.</div>
+          <button class="reveal" onclick="toggleAnswer('today-17')">Check answer</button>
+          <div class="practice-answer" id="today-17">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 3</div>
+          <div class="practice-q">A geologist studies a rock&#x27;s ___ to learn what minerals it contains.</div>
+          <button class="reveal" onclick="toggleAnswer('today-18')">Check answer</button>
+          <div class="practice-answer" id="today-18">composition</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 1</div>
+          <div class="practice-q">Please ___ your library book in the return box.</div>
+          <button class="reveal" onclick="toggleAnswer('today-19')">Check answer</button>
+          <div class="practice-answer" id="today-19">deposit</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 2</div>
+          <div class="practice-q">The truck will ___ the boxes near the front door.</div>
+          <button class="reveal" onclick="toggleAnswer('today-20')">Check answer</button>
+          <div class="practice-answer" id="today-20">deposit</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 3</div>
+          <div class="practice-q">She went to the bank to ___ a check.</div>
+          <button class="reveal" onclick="toggleAnswer('today-21')">Check answer</button>
+          <div class="practice-answer" id="today-21">deposit</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 1</div>
+          <div class="practice-q">A chalk drawing in the rain is ___.</div>
+          <button class="reveal" onclick="toggleAnswer('today-22')">Check answer</button>
+          <div class="practice-answer" id="today-22">impermanent</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 2</div>
+          <div class="practice-q">A sand castle is ___ because waves can wash it away.</div>
+          <button class="reveal" onclick="toggleAnswer('today-23')">Check answer</button>
+          <div class="practice-answer" id="today-23">impermanent</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 3</div>
+          <div class="practice-q">A soap bubble is an ___ object because it lasts only a short time.</div>
+          <button class="reveal" onclick="toggleAnswer('today-24')">Check answer</button>
+          <div class="practice-answer" id="today-24">impermanent</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 1</div>
+          <div class="practice-q">The parked bicycle remained ___.</div>
+          <button class="reveal" onclick="toggleAnswer('today-25')">Check answer</button>
+          <div class="practice-answer" id="today-25">stationary</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 2</div>
+          <div class="practice-q">The statue is ___ because it does not move.</div>
+          <button class="reveal" onclick="toggleAnswer('today-26')">Check answer</button>
+          <div class="practice-answer" id="today-26">stationary</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 3</div>
+          <div class="practice-q">The car stayed ___ at the red light.</div>
+          <button class="reveal" onclick="toggleAnswer('today-27')">Check answer</button>
+          <div class="practice-answer" id="today-27">stationary</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 1</div>
+          <div class="practice-q">The temperature stayed ___ at 70 degrees all morning.</div>
+          <button class="reveal" onclick="toggleAnswer('today-28')">Check answer</button>
+          <div class="practice-answer" id="today-28">constant</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 2</div>
+          <div class="practice-q">Her support was a ___ source of encouragement.</div>
+          <button class="reveal" onclick="toggleAnswer('today-29')">Check answer</button>
+          <div class="practice-answer" id="today-29">constant</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 3</div>
+          <div class="practice-q">If the speed never changes, it remains ___.</div>
+          <button class="reveal" onclick="toggleAnswer('today-30')">Check answer</button>
+          <div class="practice-answer" id="today-30">constant</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 1</div>
+          <div class="practice-q">Scientists tested the ___ of the water to learn what chemicals were in it.</div>
+          <button class="reveal" onclick="toggleAnswer('today-31')">Check answer</button>
+          <div class="practice-answer" id="today-31">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 2</div>
+          <div class="practice-q">The ___ of a salad includes lettuce, tomatoes, and cucumbers.</div>
+          <button class="reveal" onclick="toggleAnswer('today-32')">Check answer</button>
+          <div class="practice-answer" id="today-32">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 3</div>
+          <div class="practice-q">A geologist studies a rock&#x27;s ___ to learn what minerals it contains.</div>
+          <button class="reveal" onclick="toggleAnswer('today-33')">Check answer</button>
+          <div class="practice-answer" id="today-33">composition</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 1</div>
+          <div class="practice-q">Rain was the ___ that caused the picnic to move indoors.</div>
+          <button class="reveal" onclick="toggleAnswer('today-34')">Check answer</button>
+          <div class="practice-answer" id="today-34">circumstance</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 2</div>
+          <div class="practice-q">Under these unusual ___, the school closed early.</div>
+          <button class="reveal" onclick="toggleAnswer('today-35')">Check answer</button>
+          <div class="practice-answer" id="today-35">circumstances</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 3</div>
+          <div class="practice-q">A family emergency was the ___ that changed our travel plans.</div>
+          <button class="reveal" onclick="toggleAnswer('today-36')">Check answer</button>
+          <div class="practice-answer" id="today-36">circumstance</div>
+        </div></div></section>
+
+<section class="section" id="book"><div class="kicker">Recreated from the uploaded textbook photos</div><h2>📖 Textbook pages 6–17, rebuilt as HTML</h2><p>This section is typed and structured as HTML rather than inserted as page images. Sarah's visible handwritten answers are included where legible.</p>
+<div class="book-jumps"><a href="#book-6">6</a><a href="#book-7">7</a><a href="#book-8">8</a><a href="#book-9">9</a><a href="#book-10">10</a><a href="#book-11">11</a><a href="#book-12">12</a><a href="#book-13">13</a><a href="#book-14">14</a><a href="#book-15">15</a><a href="#book-16">16</a><a href="#book-17">17</a></div>
+
+    <article class="recreated-page" id="book-6">
+      <div class="page-topline"><span>UNIT ONE</span><span>Page 6</span></div>
+      <h3>FAC, FIC, FECT</h3>
+      <div class="page-sub">Latin FACERE, FACTUM, “to make; to do”</div>
+      <div class="root-note">FAC, FIC, FECT come from the Latin root meaning “make” or “do.”</div>
+      <div class="book-dictionary-grid"><div class="book-entry">
+          <div class="book-word">FACSIMILE</div>
+          <div class="book-meaning">n. a copy; an imitation</div>
+          <div class="book-example">The edition of the US Constitution was a poor facsimile that looked like it was made on a cheap copier.</div>
+          <div class="book-syn">Syn: duplicate</div>
+        </div><div class="book-entry">
+          <div class="book-word">DEFICIENT</div>
+          <div class="book-meaning">adj. not having enough; lacking</div>
+          <div class="book-example">The doctor said the patient was deficient in vitamins.</div>
+          <div class="book-syn">Syn: incomplete</div>
+        </div><div class="book-entry">
+          <div class="book-word">PERFECT</div>
+          <div class="book-meaning">v. to make as good as possible; to improve</div>
+          <div class="book-example">The actor practiced the scene again and again to perfect it.</div>
+          <div class="book-syn">Syn: improve</div>
+        </div><div class="book-entry">
+          <div class="book-word">AFFECTION</div>
+          <div class="book-meaning">n. a feeling of love or liking; a tender feeling</div>
+          <div class="book-example">Ladi bought his aunt a lovely present to show his affection.</div>
+          <div class="book-syn">Syn: fondness</div>
+        </div><div class="book-entry">
+          <div class="book-word">SUFFICE</div>
+          <div class="book-meaning">v. to be enough</div>
+          <div class="book-example">Berry did not need any more friends; she felt that the ones she had would suffice.</div>
+          <div class="book-syn">Syn: satisfy</div>
+        </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-7">
+      <div class="page-topline"><span>UNIT ONE</span><span>Page 7</span></div>
+      <h3>ACT, AG · OPER · FUNCT</h3>
+      <div class="page-sub">More roots about doing, working, and performing</div>
+      <div class="root-note">ACT/AG relate to doing; OPER and FUNCT relate to working or performing.</div>
+      <div class="book-dictionary-grid"><div class="book-entry">
+          <div class="book-word">TRANSACT</div>
+          <div class="book-meaning">v. to carry on or conduct</div>
+          <div class="book-example">Since the office was closed, Carrie couldn&#x27;t transact any business there today.</div>
+          <div class="book-syn">Syn: conduct</div>
+        </div><div class="book-entry">
+          <div class="book-word">AGENDA</div>
+          <div class="book-meaning">n. a list of things to do</div>
+          <div class="book-example">The agenda included a report on income and one on spending.</div>
+          <div class="book-syn">Syn: plan</div>
+        </div><div class="book-entry">
+          <div class="book-word">COAGULATE</div>
+          <div class="book-meaning">v. to become thick, solid, clumped, or clotted</div>
+          <div class="book-example">Chemicals in the body help blood coagulate.</div>
+          <div class="book-syn">Syn: thicken</div>
+        </div><div class="book-entry">
+          <div class="book-word">OPERABLE</div>
+          <div class="book-meaning">adj. in working order; able to work</div>
+          <div class="book-example">The old mower was repaired until it became operable again.</div>
+          <div class="book-syn">Syn: usable</div>
+        </div><div class="book-entry">
+          <div class="book-word">COOPERATE</div>
+          <div class="book-meaning">v. to work together; be helpful</div>
+          <div class="book-example">The football team had to cooperate with one another.</div>
+          <div class="book-syn">Syn: assist</div>
+        </div><div class="book-entry">
+          <div class="book-word">OPERATIONAL</div>
+          <div class="book-meaning">adj. in working order</div>
+          <div class="book-example">The computer system was operational again after the repair.</div>
+          <div class="book-syn">Syn: working</div>
+        </div><div class="book-entry">
+          <div class="book-word">FUNCTION</div>
+          <div class="book-meaning">v. to work; to perform</div>
+          <div class="book-example">One elevator did not function properly.</div>
+          <div class="book-syn">Syn: work</div>
+        </div><div class="book-entry">
+          <div class="book-word">MALFUNCTION</div>
+          <div class="book-meaning">n./v. a problem in the way something works</div>
+          <div class="book-example">A computer malfunction made the screen stop.</div>
+          <div class="book-syn">Syn: failure</div>
+        </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-8">
+      <div class="page-topline"><span>UNIT ONE</span><span>Page 8</span></div>
+      <h3>EXERCISES - UNIT ONE</h3>
+      <div class="page-sub">Exercise I: Complete the sentence in a way that shows you understand the italicized vocabulary word.</div>
+      
+      <div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>inoperable</strong> · When doctors discovered that Daniel&#x27;s tumor was inoperable, they...</div>
+                  <div class="sarah-note">Sarah: “panicked a bit”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>petrified</strong> · The children were petrified by the shadow in the corner because...</div>
+                  <div class="sarah-note">Sarah: “they got scared”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>affection</strong> · Todd&#x27;s affection for Lisa showed that their relationship was...</div>
+                  <div class="sarah-note">Sarah: “true”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>malfunction</strong> · A malfunction in the jet engine forced the pilot...</div>
+                  <div class="sarah-note">Sarah: “to lose control”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">5</div><div><div class="qprompt"><strong>defunct</strong> · Terrence&#x27;s landscaping business is defunct because...</div>
+                  <div class="sarah-note">Sarah: “it doesn&#x27;t work already”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">6</div><div><div class="qprompt"><strong>transact</strong> · If the bank chooses to transact its business overseas, then...</div>
+                  <div class="sarah-note">Sarah: “it might get popular”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">7</div><div><div class="qprompt"><strong>coagulate</strong> · The chemical that had spilled took only a short time to coagulate, so...</div>
+                  <div class="sarah-note">Sarah: handwriting unclear</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">8</div><div><div class="qprompt"><strong>agenda</strong> · Robin&#x27;s agenda for the camping trip included...</div>
+                  <div class="sarah-note">Sarah: “getting food”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">9</div><div><div class="qprompt"><strong>suffice</strong> · A cup of sugar did not suffice for the recipe, but...</div>
+                  <div class="sarah-note">Sarah: “at least we won&#x27;t get cavities”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">10</div><div><div class="qprompt"><strong>cooperate</strong> · To make the unruly child cooperate, the babysitter...</div>
+                  <div class="sarah-note">Sarah: “made a deal”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">11</div><div><div class="qprompt"><strong>operational</strong> · It took a long time for the mill to become fully operational because...</div>
+                  <div class="sarah-note">Sarah: “no functioning machines”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">12</div><div><div class="qprompt"><strong>deficient</strong> · Billy does not eat enough vegetables, so he is deficient in...</div>
+                  <div class="sarah-note">Sarah: “healthiness”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">13</div><div><div class="qprompt"><strong>facsimile</strong> · We knew that the document was a facsimile of the original contract, rather than...</div>
+                  <div class="sarah-note">Sarah: “being special”</div></div>
+                </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-9">
+      <div class="page-topline"><span>UNIT ONE</span><span>Page 9</span></div>
+      <h3>EXERCISES - UNIT ONE</h3>
+      <div class="page-sub">Fill in the blank with the best vocabulary word.</div>
+      
+      <div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>suffice</strong> · Will the number of cookies you have taken ___, or will you have to take one more?</div>
+                  <div class="sarah-note">Sarah: suffice</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>petrify</strong> · The idea of giving a speech to a large group ___ Toby, so he never volunteers to do presentations.</div>
+                  <div class="sarah-note">Sarah: petrified</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>coagulate</strong> · Once the milk ___, you will have a solid substance that will look like cheese.</div>
+                  <div class="sarah-note">Sarah: coagulates</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>cooperate</strong> · Because the woman pulled over for speeding would not ___ with police, she was arrested.</div>
+                  <div class="sarah-note">Sarah: cooperate</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">5</div><div><div class="qprompt"><strong>inoperable</strong> · The new surgery brought hope to people who had been told their problems were ___.</div>
+                  <div class="sarah-note">Sarah: inoperable</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">6</div><div><div class="qprompt"><strong>agenda</strong> · Unless we have a firm ___ for the meeting, we will not know what topics need to be covered.</div>
+                  <div class="sarah-note">Sarah: agenda</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">7</div><div><div class="qprompt"><strong>operational</strong> · After the power outage, the police station&#x27;s computer network was not ___.</div>
+                  <div class="sarah-note">Sarah: operational</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">8</div><div><div class="qprompt"><strong>defunct</strong> · We were surprised when the ___ car that had been sitting in the driveway suddenly started.</div>
+                  <div class="sarah-note">Sarah: defunct</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">9</div><div><div class="qprompt"><strong>affection</strong> · My puppies often showed their ___ for me by coming to sit on my lap.</div>
+                  <div class="sarah-note">Sarah: affection</div></div>
+                </div></div><h4>Paired-word practice</h4><div class="paired-q"><div>Because Jordan is ___ in a particular vitamin, his blood does not ___.</div><div class="pair-answer">Sarah: deficient / coagulate</div></div><div class="paired-q"><div>Although the principal felt ___ for her students, she told them that their short reports would not ___.</div><div class="pair-answer">Sarah: affection / suffice</div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-10">
+      <div class="page-topline"><span>UNIT ONE</span><span>Page 10</span></div>
+      <h3>EXERCISES - UNIT ONE</h3>
+      <div class="page-sub">Paired vocabulary and context practice</div>
+      
+      <div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>operational / transact</strong> · When a bank is fully ___, its employees will be able to ___ business from anywhere in the world.</div>
+                  <div class="sarah-note">Sarah: operational / transact</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>agenda / malfunction</strong> · We had many places listed on our travel ___, but a(n) ___ in our car&#x27;s engine kept us from getting to them.</div>
+                  <div class="sarah-note">Sarah: agenda / malfunction</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>petrified</strong> · The thing that petrified us the most during the nature presentation was...</div>
+                  <div class="sarah-note">Sarah: “the venomous spider”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>malfunction</strong> · When there is a malfunction in your TV, you should...</div>
+                  <div class="sarah-note">Sarah: “fix it or disable something”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">5</div><div><div class="qprompt"><strong>agenda</strong> · If the half-hour meeting lasts two hours, it probably means the agenda...</div>
+                  <div class="sarah-note">Sarah: “is short”</div></div>
+                </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-11">
+      <div class="page-topline"><span>UNIT ONE</span><span>Page 11</span></div>
+      <h3>READING: GOVERNMENT</h3>
+      <div class="page-sub">Use the vocabulary from Unit One while reading about government.</div>
+      
+      <div class="reading-box"><p>A society has some form of government to make and enforce decisions that affect many people. Citizens may participate directly or elect representatives. In a democratic government, people have a voice in choosing leaders and shaping public decisions.</p><p>Jurisdiction describes the area in which a government or official has legal authority. Special-interest groups may represent people with shared concerns, such as business, farming, labor, environmental protection, or other causes.</p><p>Because different groups may disagree, democratic systems use laws, elections, discussion, and compromise to manage competing interests while protecting individual rights.</p></div><div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>1</strong> · Which choice best defines government?</div>
+                  <div class="sarah-note">Sarah selected A</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>2</strong> · Why are special-interest groups important in a diverse society?</div>
+                  <div class="sarah-note">Sarah selected C</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>3</strong> · What role does jurisdiction play in government?</div>
+                  <div class="sarah-note">Sarah selected A</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>4</strong> · Which feature distinguishes a democratic government?</div>
+                  <div class="sarah-note">Sarah selected B</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">5</div><div><div class="qprompt"><strong>5</strong> · What is the best title for the article?</div>
+                  <div class="sarah-note">Sarah selected D</div></div>
+                </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-12">
+      <div class="page-topline"><span>UNIT TWO</span><span>Page 12</span></div>
+      <h3>POS, PON · MAN</h3>
+      <div class="page-sub">Latin roots about putting, placing, and remaining</div>
+      <div class="root-note">POS/PON often carry the idea of putting or placing. MAN can carry the idea of staying or remaining.</div>
+      <div class="book-dictionary-grid"><div class="book-entry">
+          <div class="book-word">DEPOSIT</div>
+          <div class="book-meaning">v. to put down, drop, or place</div>
+          <div class="book-example">The truck deposited its load beside the road.</div>
+          <div class="book-syn">Syn: deliver</div>
+        </div><div class="book-entry">
+          <div class="book-word">COMPOSITION</div>
+          <div class="book-meaning">n. the makeup of something</div>
+          <div class="book-example">Bronze has a composition of copper and tin.</div>
+          <div class="book-syn">Syn: content</div>
+        </div><div class="book-entry">
+          <div class="book-word">PROPOSITION</div>
+          <div class="book-meaning">n. an idea put forth; a suggestion</div>
+          <div class="book-example">A proposition was made to rebuild the nation&#x27;s election system.</div>
+          <div class="book-syn">Syn: offer</div>
+        </div><div class="book-entry">
+          <div class="book-word">OPPONENT</div>
+          <div class="book-meaning">n. one who goes against; a rival</div>
+          <div class="book-example">His opponent in the marathon race fell farther behind him.</div>
+          <div class="book-syn">Syn: competitor</div>
+        </div><div class="book-entry">
+          <div class="book-word">IMPERMANENT</div>
+          <div class="book-meaning">adj. not lasting forever</div>
+          <div class="book-example">Few relationships last forever; most are impermanent.</div>
+          <div class="book-syn">Syn: passing</div>
+        </div><div class="book-entry">
+          <div class="book-word">REMNANT</div>
+          <div class="book-meaning">n. something left over</div>
+          <div class="book-example">The only remnant of the building that could be found after the fire was a badly burned door.</div>
+          <div class="book-syn">Syn: remainder</div>
+        </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-13">
+      <div class="page-topline"><span>UNIT TWO</span><span>Page 13</span></div>
+      <h3>STA, STAN</h3>
+      <div class="page-sub">Latin STARE, STATUM, “to stand; to stay”</div>
+      <div class="root-note">STA/STAN give the idea of standing or staying.</div>
+      <div class="book-dictionary-grid"><div class="book-entry">
+          <div class="book-word">STATUS</div>
+          <div class="book-meaning">n. a condition or situation; a position</div>
+          <div class="book-example">The status of the patient remained stable.</div>
+          <div class="book-syn">Syn: position</div>
+        </div><div class="book-entry">
+          <div class="book-word">CIRCUMSTANCE</div>
+          <div class="book-meaning">n. the condition surrounding something; a situation</div>
+          <div class="book-example">The police wondered what circumstance would make someone break into the building.</div>
+          <div class="book-syn">Syn: incident</div>
+        </div><div class="book-entry">
+          <div class="book-word">CONSTANT</div>
+          <div class="book-meaning">n./adj. something that stays the same; steady</div>
+          <div class="book-example">Vince felt that the only constant in his life was change.</div>
+          <div class="book-syn">Syn: stable</div>
+        </div><div class="book-entry">
+          <div class="book-word">STATIONARY</div>
+          <div class="book-meaning">adj. standing still; not moving</div>
+          <div class="book-example">Her bicycle was stationary at the light.</div>
+          <div class="book-syn">Syn: motionless</div>
+        </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-14">
+      <div class="page-topline"><span>UNIT TWO</span><span>Page 14</span></div>
+      <h3>EXERCISES - UNIT TWO</h3>
+      <div class="page-sub">Exercise I and Exercise II</div>
+      
+      <div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>opponent</strong> · When I made my opening statement, my opponent on the debate team...</div>
+                  <div class="sarah-note">Sarah: “groaned”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>proposition</strong> · Serita&#x27;s proposition about going out for dinner was rejected because...</div>
+                  <div class="sarah-note">Sarah: “nobody agreed”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>circumstance</strong> · One circumstance that might cause the picnic to be cancelled is...</div>
+                  <div class="sarah-note">Sarah: “the rain”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>remnant</strong> · Scientists wondered if the strange piece of metal was a remnant of...</div>
+                  <div class="sarah-note">Sarah: “the time machine”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">5</div><div><div class="qprompt"><strong>status</strong> · In order to check the status of the departing flight, Patricia...</div>
+                  <div class="sarah-note">Sarah: “opened the app”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">6</div><div><div class="qprompt"><strong>composition</strong> · Geologists studied the composition of the mysterious rock because...</div>
+                  <div class="sarah-note">Sarah: “it looked cool”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">7</div><div><div class="qprompt"><strong>deposit</strong> · We wanted to deposit all the Halloween candy...</div>
+                  <div class="sarah-note">Sarah: “we wanted a snack”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">8</div><div><div class="qprompt"><strong>constant</strong> · Because snow is a constant in the Brownsville weather forecast...</div>
+                  <div class="sarah-note">Sarah: “we stayed indoors”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">9</div><div><div class="qprompt"><strong>impermanent</strong> · We learned how impermanent sand castles could be when...</div>
+                  <div class="sarah-note">Sarah: “we went to the beach”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">10</div><div><div class="qprompt"><strong>stationary</strong> · The police ordered the suspect to remain stationary during...</div>
+                  <div class="sarah-note">Sarah: “the investigation”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">11</div><div><div class="qprompt"><strong>stationary</strong> · The storm system is currently ___ and will probably not move for several more days.</div>
+                  <div class="sarah-note">Sarah: constant</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">12</div><div><div class="qprompt"><strong>remnant</strong> · A(n) ___ of the sunken ship could be seen sticking out from the water.</div>
+                  <div class="sarah-note">Sarah: remnant</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">13</div><div><div class="qprompt"><strong>opponent</strong> · Although they had always been friends, they became ___ when they stepped onto the basketball court.</div>
+                  <div class="sarah-note">Sarah: opponents</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">14</div><div><div class="qprompt"><strong>constant</strong> · The economy seems to change all the time; it is difficult to find any kind of ___ in it.</div>
+                  <div class="sarah-note">Sarah: stationary</div></div>
+                </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-15">
+      <div class="page-topline"><span>UNIT TWO</span><span>Page 15</span></div>
+      <h3>EXERCISES - UNIT TWO</h3>
+      <div class="page-sub">Continue choosing the best vocabulary word.</div>
+      
+      <div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>status</strong> · Latrina was told that her best friend&#x27;s ___ at the hospital had not changed.</div>
+                  <div class="sarah-note">Sarah: status</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>composition</strong> · Although various kinds of pollution are dumped into the ocean each year, its ___ remains basically the same.</div>
+                  <div class="sarah-note">Sarah: circumstance</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>circumstance</strong> · When we thought about the ___ that had caused our financial problems, we realized what we should have done differently.</div>
+                  <div class="sarah-note">Sarah: composition</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>deposit</strong> · The students in the cafeteria could not have breakfast until the truck ___ their daily supply of milk.</div>
+                  <div class="sarah-note">Sarah: deposited</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">5</div><div><div class="qprompt"><strong>impermanent</strong> · The old neighborhood was a(n) ___ part of her character, and it quickly changed to cheerfulness.</div>
+                  <div class="sarah-note">Sarah: impermanent</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">6</div><div><div class="qprompt"><strong>proposition</strong> · The senate rejected the senators&#x27; ___ to ban parking on downtown streets.</div>
+                  <div class="sarah-note">Sarah: proposition</div></div>
+                </div></div><h4>Paired-word practice</h4><div class="paired-q"><div>The ___ of the soil in our backyard is ___; it changes depending on weather and time of year.</div><div class="pair-answer">Sarah: composition / impermanent</div></div><div class="paired-q"><div>Trent asked about the ___ of the budget, then made a(n) ___ that he thought would save the City Council money.</div><div class="pair-answer">Sarah: status / proposition</div></div><div class="paired-q"><div>The 375-pound fighter was able to pick up his ___ and ___ the poor man into the other corner of the ring.</div><div class="pair-answer">Sarah: opponent / deposit</div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-16">
+      <div class="page-topline"><span>UNIT TWO</span><span>Page 16</span></div>
+      <h3>EXERCISES - UNIT TWO</h3>
+      <div class="page-sub">Paired vocabulary and context practice</div>
+      
+      <div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>constant / stationary</strong> · In the machine many moving parts frequently change position; the only ___ is the ten-cent rod, which is always ___.</div>
+                  <div class="sarah-note">Sarah selected the intended pair</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>status</strong> · You might need to know the status of your application if...</div>
+                  <div class="sarah-note">Sarah: handwriting unclear</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>stationary</strong> · The tiger remained quiet and stationary because it...</div>
+                  <div class="sarah-note">Sarah: “was hiding”</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>remnants</strong> · If police find remnants of explosives in the destroyed building, it probably means...</div>
+                  <div class="sarah-note">Sarah: handwriting unclear</div></div>
+                </div></div>
+    </article>
+    
+    <article class="recreated-page" id="book-17">
+      <div class="page-topline"><span>UNIT TWO</span><span>Page 17</span></div>
+      <h3>READING: THE CENTRAL BANKING SYSTEM</h3>
+      <div class="page-sub">Reading comprehension using Unit Two vocabulary</div>
+      
+      <div class="reading-box"><p>For much of United States history, the country did not always have one permanent central banking system. Early national banks were created, challenged, and later allowed to expire. The Federal Reserve System was eventually established in the twentieth century.</p><p>A central bank can influence the money supply, interest rates, and the stability of a nation&#x27;s financial system. Its status and responsibilities have changed over time as laws and economic circumstances changed.</p><p>Because banking policy affects businesses, consumers, and the government, debates about central banking have often involved competing propositions and strong opponents.</p></div><div class="book-questions"><div class="text-q">
+                  <div class="qnum">1</div><div><div class="qprompt"><strong>1</strong> · Which statement is true according to the article?</div>
+                  <div class="sarah-note">Sarah selected the option stating that the United States did not always have a central banking system.</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">2</div><div><div class="qprompt"><strong>2</strong> · What is the central banking system in the United States today called?</div>
+                  <div class="sarah-note">Sarah selected Federal Reserve System.</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">3</div><div><div class="qprompt"><strong>3</strong> · Which statement is NOT true about the central banking system?</div>
+                  <div class="sarah-note">Sarah selected the option saying the United States has always had one.</div></div>
+                </div><div class="text-q">
+                  <div class="qnum">4</div><div><div class="qprompt"><strong>4</strong> · What is the best title for this article?</div>
+                  <div class="sarah-note">Sarah selected the central banking system / Federal Reserve option.</div></div>
+                </div></div>
+    </article>
+    
+</section>
+
+<section class="section weekend" id="weekend"><div class="kicker">Save for the weekend</div><h2>🌈 5 extra similar questions for every missed item</h2><p>These 60 questions are intentionally separate from today's homework. Use them for quick reinforcement over the weekend.</p><div class="practice-grid">
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 1</div>
+          <div class="practice-q">The shop can ___ business even when the owner is away.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-1')">Check answer</button>
+          <div class="practice-answer" id="weekend-1">transact</div>
+        </div>
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 2</div>
+          <div class="practice-q">The bank opened a branch so it could ___ business overseas.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-2')">Check answer</button>
+          <div class="practice-answer" id="weekend-2">transact</div>
+        </div>
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 3</div>
+          <div class="practice-q">We went to the office to ___ business with the insurance company.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-3')">Check answer</button>
+          <div class="practice-answer" id="weekend-3">transact</div>
+        </div>
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 4</div>
+          <div class="practice-q">The website allows customers to ___ business from home.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-4')">Check answer</button>
+          <div class="practice-answer" id="weekend-4">transact</div>
+        </div>
+        <div class="practice-card" data-word="transact">
+          <div class="practice-meta">transact · practice 5</div>
+          <div class="practice-q">A company must follow local laws when it ___ business in another country.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-5')">Check answer</button>
+          <div class="practice-answer" id="weekend-5">transacts</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 1</div>
+          <div class="practice-q">One flashlight should ___ for the short walk.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-6')">Check answer</button>
+          <div class="practice-answer" id="weekend-6">suffice</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 2</div>
+          <div class="practice-q">A single snack may not ___ for a long trip.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-7')">Check answer</button>
+          <div class="practice-answer" id="weekend-7">suffice</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 3</div>
+          <div class="practice-q">If five pencils are enough, they will ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-8')">Check answer</button>
+          <div class="practice-answer" id="weekend-8">suffice</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 4</div>
+          <div class="practice-q">Two examples should ___ to prove your point.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-9')">Check answer</button>
+          <div class="practice-answer" id="weekend-9">suffice</div>
+        </div>
+        <div class="practice-card" data-word="suffice">
+          <div class="practice-meta">suffice · practice 5</div>
+          <div class="practice-q">Would one blanket ___ on a freezing night?</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-10')">Check answer</button>
+          <div class="practice-answer" id="weekend-10">suffice</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 1</div>
+          <div class="practice-q">If a machine lacks an important part, it may be ___ in what it needs to work.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-11')">Check answer</button>
+          <div class="practice-answer" id="weekend-11">deficient</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 2</div>
+          <div class="practice-q">The meal was ___ in protein because it had almost none.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-12')">Check answer</button>
+          <div class="practice-answer" id="weekend-12">deficient</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 3</div>
+          <div class="practice-q">The report was ___ in detail because it left out important facts.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-13')">Check answer</button>
+          <div class="practice-answer" id="weekend-13">deficient</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 4</div>
+          <div class="practice-q">A person may feel tired if they are ___ in certain vitamins.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-14')">Check answer</button>
+          <div class="practice-answer" id="weekend-14">deficient</div>
+        </div>
+        <div class="practice-card" data-word="deficient">
+          <div class="practice-meta">deficient · practice 5</div>
+          <div class="practice-q">The soil was ___ in water after weeks without rain.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-15')">Check answer</button>
+          <div class="practice-answer" id="weekend-15">deficient</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 1</div>
+          <div class="practice-q">The class studied a ___ of the old map while the original stayed protected.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-16')">Check answer</button>
+          <div class="practice-answer" id="weekend-16">facsimile</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 2</div>
+          <div class="practice-q">A printed copy can be a ___ of a handwritten page.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-17')">Check answer</button>
+          <div class="practice-answer" id="weekend-17">facsimile</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 3</div>
+          <div class="practice-q">The exhibit used a ___ because the original was too valuable.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-18')">Check answer</button>
+          <div class="practice-answer" id="weekend-18">facsimile</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 4</div>
+          <div class="practice-q">The teacher passed out a ___ of the famous painting.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-19')">Check answer</button>
+          <div class="practice-answer" id="weekend-19">facsimile</div>
+        </div>
+        <div class="practice-card" data-word="facsimile">
+          <div class="practice-meta">facsimile · practice 5</div>
+          <div class="practice-q">Which is a facsimile: the original diploma or a copy of it?</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-20')">Check answer</button>
+          <div class="practice-answer" id="weekend-20">a copy of it</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 1</div>
+          <div class="practice-q">A clear ___ helps a meeting stay organized.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-21')">Check answer</button>
+          <div class="practice-answer" id="weekend-21">agenda</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 2</div>
+          <div class="practice-q">The class council put the dance discussion on its ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-22')">Check answer</button>
+          <div class="practice-answer" id="weekend-22">agenda</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 3</div>
+          <div class="practice-q">If the ___ is very long, the meeting may take extra time.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-23')">Check answer</button>
+          <div class="practice-answer" id="weekend-23">agenda</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 4</div>
+          <div class="practice-q">The teacher wrote the day&#x27;s ___ on the board.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-24')">Check answer</button>
+          <div class="practice-answer" id="weekend-24">agenda</div>
+        </div>
+        <div class="practice-card" data-word="agenda">
+          <div class="practice-meta">agenda · practice 5</div>
+          <div class="practice-q">What would belong on an agenda: topics to discuss or yesterday&#x27;s weather?</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-25')">Check answer</button>
+          <div class="practice-answer" id="weekend-25">topics to discuss</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 1</div>
+          <div class="practice-q">The ___ of bronze includes copper and tin.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-26')">Check answer</button>
+          <div class="practice-answer" id="weekend-26">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 2</div>
+          <div class="practice-q">Doctors can study the ___ of blood to see what it contains.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-27')">Check answer</button>
+          <div class="practice-answer" id="weekend-27">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 3</div>
+          <div class="practice-q">The ___ of the mystery powder showed that it contained salt and sugar.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-28')">Check answer</button>
+          <div class="practice-answer" id="weekend-28">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 4</div>
+          <div class="practice-q">To learn what a planet is made of, scientists study its ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-29')">Check answer</button>
+          <div class="practice-answer" id="weekend-29">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 5</div>
+          <div class="practice-q">Which asks about composition: &#x27;What is it made of?&#x27; or &#x27;What happened around it?&#x27;</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-30')">Check answer</button>
+          <div class="practice-answer" id="weekend-30">What is it made of?</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 1</div>
+          <div class="practice-q">The machine will ___ the package onto the conveyor belt.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-31')">Check answer</button>
+          <div class="practice-answer" id="weekend-31">deposit</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 2</div>
+          <div class="practice-q">We should ___ our muddy shoes by the door.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-32')">Check answer</button>
+          <div class="practice-answer" id="weekend-32">deposit</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 3</div>
+          <div class="practice-q">The delivery driver will ___ the groceries on the porch.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-33')">Check answer</button>
+          <div class="practice-answer" id="weekend-33">deposit</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 4</div>
+          <div class="practice-q">The squirrel ___ the acorn in a hole for later.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-34')">Check answer</button>
+          <div class="practice-answer" id="weekend-34">deposited</div>
+        </div>
+        <div class="practice-card" data-word="deposit">
+          <div class="practice-meta">deposit · practice 5</div>
+          <div class="practice-q">If you deposit something, do you put it somewhere or eat it?</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-35')">Check answer</button>
+          <div class="practice-answer" id="weekend-35">put it somewhere</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 1</div>
+          <div class="practice-q">A temporary tattoo is ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-36')">Check answer</button>
+          <div class="practice-answer" id="weekend-36">impermanent</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 2</div>
+          <div class="practice-q">A snowman is usually ___ because it melts.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-37')">Check answer</button>
+          <div class="practice-answer" id="weekend-37">impermanent</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 3</div>
+          <div class="practice-q">A pencil mark can be ___ if it is erased.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-38')">Check answer</button>
+          <div class="practice-answer" id="weekend-38">impermanent</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 4</div>
+          <div class="practice-q">The decorations were ___ and came down after the party.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-39')">Check answer</button>
+          <div class="practice-answer" id="weekend-39">impermanent</div>
+        </div>
+        <div class="practice-card" data-word="impermanent">
+          <div class="practice-meta">impermanent · practice 5</div>
+          <div class="practice-q">Which is more impermanent: a soap bubble or a mountain?</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-40')">Check answer</button>
+          <div class="practice-answer" id="weekend-40">a soap bubble</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 1</div>
+          <div class="practice-q">The storm remained ___ over the same area for hours.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-41')">Check answer</button>
+          <div class="practice-answer" id="weekend-41">stationary</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 2</div>
+          <div class="practice-q">Please keep the chair ___ while I fix it.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-42')">Check answer</button>
+          <div class="practice-answer" id="weekend-42">stationary</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 3</div>
+          <div class="practice-q">A parked bus is ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-43')">Check answer</button>
+          <div class="practice-answer" id="weekend-43">stationary</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 4</div>
+          <div class="practice-q">If the robot is stationary, it is not ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-44')">Check answer</button>
+          <div class="practice-answer" id="weekend-44">moving</div>
+        </div>
+        <div class="practice-card" data-word="stationary">
+          <div class="practice-meta">stationary · practice 5</div>
+          <div class="practice-q">Which word means &#x27;not moving&#x27;: constant or stationary?</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-45')">Check answer</button>
+          <div class="practice-answer" id="weekend-45">stationary</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 1</div>
+          <div class="practice-q">The dripping sound was a ___ noise all night.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-46')">Check answer</button>
+          <div class="practice-answer" id="weekend-46">constant</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 2</div>
+          <div class="practice-q">A ___ value does not change.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-47')">Check answer</button>
+          <div class="practice-answer" id="weekend-47">constant</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 3</div>
+          <div class="practice-q">The teacher asked us to keep the pressure ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-48')">Check answer</button>
+          <div class="practice-answer" id="weekend-48">constant</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 4</div>
+          <div class="practice-q">If something is constant, it stays the ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-49')">Check answer</button>
+          <div class="practice-answer" id="weekend-49">same</div>
+        </div>
+        <div class="practice-card" data-word="constant">
+          <div class="practice-meta">constant · practice 5</div>
+          <div class="practice-q">Which word means &#x27;stays the same&#x27;: constant or stationary?</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-50')">Check answer</button>
+          <div class="practice-answer" id="weekend-50">constant</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 1</div>
+          <div class="practice-q">The ___ of bronze includes copper and tin.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-51')">Check answer</button>
+          <div class="practice-answer" id="weekend-51">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 2</div>
+          <div class="practice-q">Doctors can study the ___ of blood to see what it contains.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-52')">Check answer</button>
+          <div class="practice-answer" id="weekend-52">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 3</div>
+          <div class="practice-q">The ___ of the mystery powder showed that it contained salt and sugar.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-53')">Check answer</button>
+          <div class="practice-answer" id="weekend-53">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 4</div>
+          <div class="practice-q">To learn what a planet is made of, scientists study its ___.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-54')">Check answer</button>
+          <div class="practice-answer" id="weekend-54">composition</div>
+        </div>
+        <div class="practice-card" data-word="composition">
+          <div class="practice-meta">composition · practice 5</div>
+          <div class="practice-q">Which asks about composition: &#x27;What is it made of?&#x27; or &#x27;What happened around it?&#x27;</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-55')">Check answer</button>
+          <div class="practice-answer" id="weekend-55">What is it made of?</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 1</div>
+          <div class="practice-q">The weather was an important ___ affecting the game.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-56')">Check answer</button>
+          <div class="practice-answer" id="weekend-56">circumstance</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 2</div>
+          <div class="practice-q">We considered every ___ before making the decision.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-57')">Check answer</button>
+          <div class="practice-answer" id="weekend-57">circumstance</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 3</div>
+          <div class="practice-q">Because of the difficult ___, the event was postponed.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-58')">Check answer</button>
+          <div class="practice-answer" id="weekend-58">circumstances</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 4</div>
+          <div class="practice-q">A power outage was the ___ that stopped the movie.</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-59')">Check answer</button>
+          <div class="practice-answer" id="weekend-59">circumstance</div>
+        </div>
+        <div class="practice-card" data-word="circumstance">
+          <div class="practice-meta">circumstance · practice 5</div>
+          <div class="practice-q">Which asks about circumstance: &#x27;What situation surrounded it?&#x27; or &#x27;What is it made of?&#x27;</div>
+          <button class="reveal" onclick="toggleAnswer('weekend-60')">Check answer</button>
+          <div class="practice-answer" id="weekend-60">What situation surrounded it?</div>
+        </div></div></section>
+
+<p class="small">Source note: recreated from the uploaded photographs of textbook pages 6–17. A few photographed handwritten marks were too unclear to interpret confidently, so those are labeled as unclear rather than guessed.</p>
+</main>
+<script>
+function toggleAnswer(id) {
+  const el=document.getElementById(id);
+  el.style.display=(el.style.display==='block')?'none':'block';
+}
+</script>
+</body></html>
