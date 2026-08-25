@@ -17,7 +17,9 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
 .today-banner{background:linear-gradient(135deg,#fff4c7,#ffe8f3);border:2px solid #ffd66e;padding:18px;border-radius:20px;font-size:18px;font-weight:800}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px} .stat{background:#f5f2ff;border-radius:18px;padding:16px;text-align:center} .stat strong{display:block;font-size:32px;color:var(--purple)}
 .fix-card{border:2px solid #eee8ff;border-radius:20px;padding:16px;margin:14px 0;background:white} .fix-top{display:flex;justify-content:space-between;gap:10px;align-items:center} .mistake-num,.fix-word{font-weight:900;padding:6px 10px;border-radius:999px} .mistake-num{background:#eef6ff} .fix-word{background:#eee7ff;color:#5d3bd1;cursor:help;border-bottom:2px dotted #5d3bd1} .meaning-strip{margin-top:10px;background:#fff9d9;padding:10px;border-radius:12px;font-weight:800}
-.practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .practice-card{border-radius:18px;padding:15px;background:linear-gradient(180deg,#fff,#fbfaff);border:2px solid #eee8ff} .practice-meta{font-size:12px;text-transform:uppercase;font-weight:900;color:#6a4ed4} .practice-q{font-weight:850;font-size:16px;margin:10px 0 12px;min-height:46px} .reveal{border:0;border-radius:12px;padding:9px 12px;background:#6548dc;color:white;font-weight:900;cursor:pointer} .practice-answer{display:none;margin-top:10px;padding:9px;border-radius:12px;background:#edfff6;font-weight:900}
+.practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .practice-card{border-radius:18px;padding:15px;background:linear-gradient(180deg,#fff,#fbfaff);border:2px solid #eee8ff} .practice-meta{font-size:12px;text-transform:uppercase;font-weight:900;color:#6a4ed4} .practice-q{font-weight:850;font-size:16px;margin:10px 0 12px;min-height:46px}
+.quiz-options{display:flex;flex-direction:column;gap:8px} .quiz-opt{border:2px solid #ddd4ff;border-radius:12px;padding:9px 12px;background:white;color:#2b2140;font-weight:800;cursor:pointer;text-align:left;display:flex;align-items:center;gap:8px} .quiz-opt:hover{border-color:#9b8cf0} .quiz-letter{background:#eee7ff;color:#5d3bd1;font-weight:900;border-radius:8px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0} .quiz-opt.correct{background:#edfff6;border-color:#2eb67d;color:#1f8a53} .quiz-opt.correct .quiz-letter{background:#c9f5df;color:#1f8a53} .quiz-opt.incorrect{background:#fff0f2;border-color:#e0546b;color:#a32634} .quiz-opt.incorrect .quiz-letter{background:#ffd0d6;color:#a32634} .quiz-opt.disabled{cursor:default;opacity:.85}
+.quiz-feedback{margin-top:8px;font-weight:900;font-size:14px}
 .weekend .practice-card{border-color:#dbefff} .weekend .practice-meta{color:#3175aa} .weekend .reveal{background:#3e91c9}
 .word-bank{background:linear-gradient(135deg,#f0efff,#fff0f7);border:2px dashed #b8a6f2;border-radius:18px;padding:16px 18px;margin:16px 0} .word-bank-title{font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#5136bf;margin-bottom:10px} .word-bank-list{display:flex;flex-wrap:wrap;gap:8px} .word-chip{background:white;border:2px solid #ddd4ff;border-bottom:3px dotted #9b8cf0;border-radius:999px;padding:6px 14px;font-weight:800;color:#42306e;font-size:14px;cursor:help}
 .fix-attempt{background:#fff0f2;border:2px solid #ffd0d6;border-radius:14px;padding:10px 14px;font-size:14px;margin-top:12px} .fix-attempt b{color:#b23a4e;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
@@ -36,11 +38,6 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
 .reset-progress{border:0;background:none;color:#7a6ba8;font-weight:800;text-decoration:underline;cursor:pointer;font-size:13px}
 .weak-word-panel{width:100%;margin-top:6px}
 .weak-word-panel-title{font-weight:900;font-size:12px;text-transform:uppercase;color:#b23a4e;margin-bottom:6px}
-.self-check{display:none;gap:8px;margin-top:10px}
-.mark-btn{border:0;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer;font-size:13px}
-.mark-btn.right{background:#d7f7e6;color:#1f8a53}
-.mark-btn.wrong{background:#ffe1e6;color:#b23a4e}
-.mark-btn.selected{outline:3px solid currentColor}
 .print-toolbar{text-align:center;margin:0 0 18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .match-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
 .match-row{display:flex;align-items:center;gap:10px;background:#faf9ff;border:2px solid #eee8ff;border-radius:12px;padding:10px 12px}
@@ -51,12 +48,14 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
 .match-result{margin-top:12px;font-weight:900}
 @media(max-width:700px){.match-grid{grid-template-columns:1fr}}
 @media print{
-  nav,.reveal,.shuffle-btn,.self-check,.progress-summary,.print-toolbar,.mark-btn,.match-game{display:none !important}
+  nav,.shuffle-btn,.progress-summary,.print-toolbar,.match-game{display:none !important}
   body{background:white}
   .section,.recreated-page,.hero{box-shadow:none}
-  .practice-answer{display:block !important}
-  body.print-blank .practice-answer{display:none !important}
-  body.print-blank .practice-card::after{content:"Answer: _____________________________";display:block;margin-top:12px;font-weight:700;color:#888;border-top:1px dashed #ccc;padding-top:8px}
+  .quiz-opt.correct,.quiz-opt.incorrect{background:white !important;border-color:#ddd4ff !important;color:#2b2140 !important}
+  .quiz-opt.correct .quiz-letter,.quiz-opt.incorrect .quiz-letter{background:#eee7ff !important;color:#5d3bd1 !important}
+  .quiz-feedback{display:none !important}
+  .quiz-options[data-correct]::after{content:"✓ Answer: " attr(data-correct);display:block;margin-top:8px;font-weight:900;color:#1f8a53}
+  body.print-blank .quiz-options[data-correct]::after{content:none}
 }
 </style></head><body>
 <header><div class="hero">
@@ -166,261 +165,225 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
     </article>
     </section>
 
-<section class="section" id="today-practice"><div class="kicker">Practice for today</div><h2>🎮 3 similar questions for every mistake</h2><p>Read each sentence, pick the word from the bank below that fits best, then use <b>Check answer</b> to see if you were right. <button class="shuffle-btn" onclick="shuffleGrid('today-grid','Practice Question')">🔀 Shuffle order</button></p>
-<div class="word-bank"><div class="word-bank-title">📦 Word bank — 11 words, use each one more than once (hover a word for its meaning)</div><div class="word-bank-list"><span class="word-chip" title="a list of things to discuss">agenda</span><span class="word-chip" title="situation or condition around an event">circumstance</span><span class="word-chip" title="what something is made of">composition</span><span class="word-chip" title="staying the same">constant</span><span class="word-chip" title="lacking / not enough">deficient</span><span class="word-chip" title="put / place / leave">deposit</span><span class="word-chip" title="a copy or imitation">facsimile</span><span class="word-chip" title="temporary / not lasting">impermanent</span><span class="word-chip" title="not moving">stationary</span><span class="word-chip" title="be enough">suffice</span><span class="word-chip" title="conduct business">transact</span></div></div>
+<section class="section" id="today-practice"><div class="kicker">Practice for today</div><h2>🎮 3 similar questions for every mistake</h2><p>It's a quiz! Read each sentence and tap the answer you think is correct — you'll find out right away. <button class="shuffle-btn" onclick="shuffleGrid('today-grid','Practice Question')">🔀 Shuffle order</button></p>
+<div class="word-bank"><div class="word-bank-title">📖 Word reference — all 11 words tested below (hover a word for its meaning)</div><div class="word-bank-list"><span class="word-chip" title="a list of things to discuss">agenda</span><span class="word-chip" title="situation or condition around an event">circumstance</span><span class="word-chip" title="what something is made of">composition</span><span class="word-chip" title="staying the same">constant</span><span class="word-chip" title="lacking / not enough">deficient</span><span class="word-chip" title="put / place / leave">deposit</span><span class="word-chip" title="a copy or imitation">facsimile</span><span class="word-chip" title="temporary / not lasting">impermanent</span><span class="word-chip" title="not moving">stationary</span><span class="word-chip" title="be enough">suffice</span><span class="word-chip" title="conduct business">transact</span></div></div>
 <div class="progress-summary" id="today-grid-summary"><span class="progress-tally">0/36 answered · 0 correct · 0 need review</span><button class="reset-progress" onclick="resetProgress('today-grid')">↺ Reset progress</button><div class="weak-word-panel" style="display:none"><div class="weak-word-panel-title">📋 Words to review</div><div class="weak-word-list"></div></div></div>
 <div class="practice-grid" id="today-grid">
         <div class="practice-card">
           <div class="practice-meta">Practice Question 1</div>
           <div class="practice-q">The company plans to ___ business with stores in Canada.</div>
-          <button class="reveal" onclick="toggleAnswer('today-1')">Check answer</button>
-          <div class="practice-answer" id="today-1">transact</div>
-          <div class="self-check" id="today-1-check"><button class="mark-btn right" onclick="markResult('today-1','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-1','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-1-options" data-correct="transact"><button class="quiz-opt" onclick="selectOption(this,'today-1')" data-value="deposit"><span class="quiz-letter">A</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-1')" data-value="suffice"><span class="quiz-letter">B</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-1')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-1')" data-value="transact"><span class="quiz-letter">D</span>transact</button></div>
+          <div class="quiz-feedback" id="today-1-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 2</div>
           <div class="practice-q">Banks use secure systems to ___ business online.</div>
-          <button class="reveal" onclick="toggleAnswer('today-2')">Check answer</button>
-          <div class="practice-answer" id="today-2">transact</div>
-          <div class="self-check" id="today-2-check"><button class="mark-btn right" onclick="markResult('today-2','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-2','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-2-options" data-correct="transact"><button class="quiz-opt" onclick="selectOption(this,'today-2')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-2')" data-value="deposit"><span class="quiz-letter">B</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-2')" data-value="transact"><span class="quiz-letter">C</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-2')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="today-2-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 3</div>
           <div class="practice-q">If two companies ___ business, they are conducting business with each other.</div>
-          <button class="reveal" onclick="toggleAnswer('today-3')">Check answer</button>
-          <div class="practice-answer" id="today-3">transact</div>
-          <div class="self-check" id="today-3-check"><button class="mark-btn right" onclick="markResult('today-3','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-3','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-3-options" data-correct="transact"><button class="quiz-opt" onclick="selectOption(this,'today-3')" data-value="suffice"><span class="quiz-letter">A</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-3')" data-value="agenda"><span class="quiz-letter">B</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-3')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-3')" data-value="transact"><span class="quiz-letter">D</span>transact</button></div>
+          <div class="quiz-feedback" id="today-3-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 4</div>
           <div class="practice-q">One bottle of water may not ___ for a whole soccer game.</div>
-          <button class="reveal" onclick="toggleAnswer('today-4')">Check answer</button>
-          <div class="practice-answer" id="today-4">suffice</div>
-          <div class="self-check" id="today-4-check"><button class="mark-btn right" onclick="markResult('today-4','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-4','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-4-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'today-4')" data-value="transact"><span class="quiz-letter">A</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-4')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-4')" data-value="suffice"><span class="quiz-letter">C</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-4')" data-value="deposit"><span class="quiz-letter">D</span>deposit</button></div>
+          <div class="quiz-feedback" id="today-4-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 5</div>
           <div class="practice-q">A short answer will ___ if it explains the idea clearly.</div>
-          <button class="reveal" onclick="toggleAnswer('today-5')">Check answer</button>
-          <div class="practice-answer" id="today-5">suffice</div>
-          <div class="self-check" id="today-5-check"><button class="mark-btn right" onclick="markResult('today-5','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-5','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-5-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'today-5')" data-value="transact"><span class="quiz-letter">A</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-5')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-5')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-5')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="today-5-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 6</div>
           <div class="practice-q">Will three chairs ___ for all the guests?</div>
-          <button class="reveal" onclick="toggleAnswer('today-6')">Check answer</button>
-          <div class="practice-answer" id="today-6">suffice</div>
-          <div class="self-check" id="today-6-check"><button class="mark-btn right" onclick="markResult('today-6','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-6','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-6-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'today-6')" data-value="transact"><span class="quiz-letter">A</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-6')" data-value="deposit"><span class="quiz-letter">B</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-6')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-6')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="today-6-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 7</div>
           <div class="practice-q">Someone who does not get enough iron may be ___ in iron.</div>
-          <button class="reveal" onclick="toggleAnswer('today-7')">Check answer</button>
-          <div class="practice-answer" id="today-7">deficient</div>
-          <div class="self-check" id="today-7-check"><button class="mark-btn right" onclick="markResult('today-7','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-7','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-7-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'today-7')" data-value="impermanent"><span class="quiz-letter">A</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'today-7')" data-value="suffice"><span class="quiz-letter">B</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-7')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-7')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="today-7-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 8</div>
           <div class="practice-q">The soil was ___ in nutrients, so the plants grew poorly.</div>
-          <button class="reveal" onclick="toggleAnswer('today-8')">Check answer</button>
-          <div class="practice-answer" id="today-8">deficient</div>
-          <div class="self-check" id="today-8-check"><button class="mark-btn right" onclick="markResult('today-8','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-8','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-8-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'today-8')" data-value="suffice"><span class="quiz-letter">A</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-8')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-8')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-8')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="today-8-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 9</div>
           <div class="practice-q">A diet that lacks vitamin C is ___ in vitamin C.</div>
-          <button class="reveal" onclick="toggleAnswer('today-9')">Check answer</button>
-          <div class="practice-answer" id="today-9">deficient</div>
-          <div class="self-check" id="today-9-check"><button class="mark-btn right" onclick="markResult('today-9','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-9','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-9-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'today-9')" data-value="deficient"><span class="quiz-letter">A</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-9')" data-value="impermanent"><span class="quiz-letter">B</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'today-9')" data-value="suffice"><span class="quiz-letter">C</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-9')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="today-9-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 10</div>
           <div class="practice-q">The museum displayed a ___ of the ancient letter so visitors could touch it.</div>
-          <button class="reveal" onclick="toggleAnswer('today-10')">Check answer</button>
-          <div class="practice-answer" id="today-10">facsimile</div>
-          <div class="self-check" id="today-10-check"><button class="mark-btn right" onclick="markResult('today-10','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-10','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-10-options" data-correct="facsimile"><button class="quiz-opt" onclick="selectOption(this,'today-10')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-10')" data-value="deposit"><span class="quiz-letter">B</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-10')" data-value="facsimile"><span class="quiz-letter">C</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'today-10')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="today-10-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 11</div>
           <div class="practice-q">A photocopy is a ___ of the original document.</div>
-          <button class="reveal" onclick="toggleAnswer('today-11')">Check answer</button>
-          <div class="practice-answer" id="today-11">facsimile</div>
-          <div class="self-check" id="today-11-check"><button class="mark-btn right" onclick="markResult('today-11','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-11','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-11-options" data-correct="facsimile"><button class="quiz-opt" onclick="selectOption(this,'today-11')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-11')" data-value="composition"><span class="quiz-letter">B</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-11')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-11')" data-value="facsimile"><span class="quiz-letter">D</span>facsimile</button></div>
+          <div class="quiz-feedback" id="today-11-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 12</div>
           <div class="practice-q">The actor signed a ___ instead of the real historical paper.</div>
-          <button class="reveal" onclick="toggleAnswer('today-12')">Check answer</button>
-          <div class="practice-answer" id="today-12">facsimile</div>
-          <div class="self-check" id="today-12-check"><button class="mark-btn right" onclick="markResult('today-12','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-12','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-12-options" data-correct="facsimile"><button class="quiz-opt" onclick="selectOption(this,'today-12')" data-value="deposit"><span class="quiz-letter">A</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-12')" data-value="agenda"><span class="quiz-letter">B</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-12')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-12')" data-value="facsimile"><span class="quiz-letter">D</span>facsimile</button></div>
+          <div class="quiz-feedback" id="today-12-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 13</div>
           <div class="practice-q">The meeting lasted too long because the ___ had too many items.</div>
-          <button class="reveal" onclick="toggleAnswer('today-13')">Check answer</button>
-          <div class="practice-answer" id="today-13">agenda</div>
-          <div class="self-check" id="today-13-check"><button class="mark-btn right" onclick="markResult('today-13','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-13','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-13-options" data-correct="agenda"><button class="quiz-opt" onclick="selectOption(this,'today-13')" data-value="transact"><span class="quiz-letter">A</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-13')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'today-13')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-13')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="today-13-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 14</div>
           <div class="practice-q">Please add &#x27;field trip plans&#x27; to tomorrow&#x27;s meeting ___.</div>
-          <button class="reveal" onclick="toggleAnswer('today-14')">Check answer</button>
-          <div class="practice-answer" id="today-14">agenda</div>
-          <div class="self-check" id="today-14-check"><button class="mark-btn right" onclick="markResult('today-14','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-14','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-14-options" data-correct="agenda"><button class="quiz-opt" onclick="selectOption(this,'today-14')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-14')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-14')" data-value="circumstance"><span class="quiz-letter">C</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'today-14')" data-value="agenda"><span class="quiz-letter">D</span>agenda</button></div>
+          <div class="quiz-feedback" id="today-14-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 15</div>
           <div class="practice-q">The first item on our ___ is choosing a team captain.</div>
-          <button class="reveal" onclick="toggleAnswer('today-15')">Check answer</button>
-          <div class="practice-answer" id="today-15">agenda</div>
-          <div class="self-check" id="today-15-check"><button class="mark-btn right" onclick="markResult('today-15','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-15','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-15-options" data-correct="agenda"><button class="quiz-opt" onclick="selectOption(this,'today-15')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-15')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'today-15')" data-value="transact"><span class="quiz-letter">C</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-15')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="today-15-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 16</div>
           <div class="practice-q">Scientists tested the ___ of the water to learn what chemicals were in it.</div>
-          <button class="reveal" onclick="toggleAnswer('today-16')">Check answer</button>
-          <div class="practice-answer" id="today-16">composition</div>
-          <div class="self-check" id="today-16-check"><button class="mark-btn right" onclick="markResult('today-16','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-16','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-16-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'today-16')" data-value="facsimile"><span class="quiz-letter">A</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'today-16')" data-value="composition"><span class="quiz-letter">B</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-16')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-16')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="today-16-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 17</div>
           <div class="practice-q">The ___ of a salad includes lettuce, tomatoes, and cucumbers.</div>
-          <button class="reveal" onclick="toggleAnswer('today-17')">Check answer</button>
-          <div class="practice-answer" id="today-17">composition</div>
-          <div class="self-check" id="today-17-check"><button class="mark-btn right" onclick="markResult('today-17','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-17','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-17-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'today-17')" data-value="circumstance"><span class="quiz-letter">A</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'today-17')" data-value="facsimile"><span class="quiz-letter">B</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'today-17')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-17')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="today-17-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 18</div>
           <div class="practice-q">A geologist studies a rock&#x27;s ___ to learn what minerals it contains.</div>
-          <button class="reveal" onclick="toggleAnswer('today-18')">Check answer</button>
-          <div class="practice-answer" id="today-18">composition</div>
-          <div class="self-check" id="today-18-check"><button class="mark-btn right" onclick="markResult('today-18','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-18','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-18-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'today-18')" data-value="circumstance"><span class="quiz-letter">A</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'today-18')" data-value="facsimile"><span class="quiz-letter">B</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'today-18')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-18')" data-value="agenda"><span class="quiz-letter">D</span>agenda</button></div>
+          <div class="quiz-feedback" id="today-18-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 19</div>
           <div class="practice-q">Please ___ your library book in the return box.</div>
-          <button class="reveal" onclick="toggleAnswer('today-19')">Check answer</button>
-          <div class="practice-answer" id="today-19">deposit</div>
-          <div class="self-check" id="today-19-check"><button class="mark-btn right" onclick="markResult('today-19','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-19','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-19-options" data-correct="deposit"><button class="quiz-opt" onclick="selectOption(this,'today-19')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-19')" data-value="suffice"><span class="quiz-letter">B</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-19')" data-value="transact"><span class="quiz-letter">C</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-19')" data-value="deposit"><span class="quiz-letter">D</span>deposit</button></div>
+          <div class="quiz-feedback" id="today-19-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 20</div>
           <div class="practice-q">The truck will ___ the boxes near the front door.</div>
-          <button class="reveal" onclick="toggleAnswer('today-20')">Check answer</button>
-          <div class="practice-answer" id="today-20">deposit</div>
-          <div class="self-check" id="today-20-check"><button class="mark-btn right" onclick="markResult('today-20','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-20','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-20-options" data-correct="deposit"><button class="quiz-opt" onclick="selectOption(this,'today-20')" data-value="deposit"><span class="quiz-letter">A</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-20')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'today-20')" data-value="suffice"><span class="quiz-letter">C</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-20')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="today-20-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 21</div>
           <div class="practice-q">She went to the bank to ___ a check.</div>
-          <button class="reveal" onclick="toggleAnswer('today-21')">Check answer</button>
-          <div class="practice-answer" id="today-21">deposit</div>
-          <div class="self-check" id="today-21-check"><button class="mark-btn right" onclick="markResult('today-21','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-21','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-21-options" data-correct="deposit"><button class="quiz-opt" onclick="selectOption(this,'today-21')" data-value="deposit"><span class="quiz-letter">A</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'today-21')" data-value="suffice"><span class="quiz-letter">B</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'today-21')" data-value="stationary"><span class="quiz-letter">C</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-21')" data-value="transact"><span class="quiz-letter">D</span>transact</button></div>
+          <div class="quiz-feedback" id="today-21-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 22</div>
           <div class="practice-q">A chalk drawing in the rain is ___.</div>
-          <button class="reveal" onclick="toggleAnswer('today-22')">Check answer</button>
-          <div class="practice-answer" id="today-22">impermanent</div>
-          <div class="self-check" id="today-22-check"><button class="mark-btn right" onclick="markResult('today-22','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-22','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-22-options" data-correct="impermanent"><button class="quiz-opt" onclick="selectOption(this,'today-22')" data-value="impermanent"><span class="quiz-letter">A</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'today-22')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-22')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-22')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="today-22-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 23</div>
           <div class="practice-q">A sand castle is ___ because waves can wash it away.</div>
-          <button class="reveal" onclick="toggleAnswer('today-23')">Check answer</button>
-          <div class="practice-answer" id="today-23">impermanent</div>
-          <div class="self-check" id="today-23-check"><button class="mark-btn right" onclick="markResult('today-23','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-23','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-23-options" data-correct="impermanent"><button class="quiz-opt" onclick="selectOption(this,'today-23')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-23')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-23')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-23')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="today-23-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 24</div>
           <div class="practice-q">A soap bubble is an ___ object because it lasts only a short time.</div>
-          <button class="reveal" onclick="toggleAnswer('today-24')">Check answer</button>
-          <div class="practice-answer" id="today-24">impermanent</div>
-          <div class="self-check" id="today-24-check"><button class="mark-btn right" onclick="markResult('today-24','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-24','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-24-options" data-correct="impermanent"><button class="quiz-opt" onclick="selectOption(this,'today-24')" data-value="constant"><span class="quiz-letter">A</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-24')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-24')" data-value="impermanent"><span class="quiz-letter">C</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'today-24')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="today-24-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 25</div>
           <div class="practice-q">The parked bicycle remained ___.</div>
-          <button class="reveal" onclick="toggleAnswer('today-25')">Check answer</button>
-          <div class="practice-answer" id="today-25">stationary</div>
-          <div class="self-check" id="today-25-check"><button class="mark-btn right" onclick="markResult('today-25','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-25','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-25-options" data-correct="stationary"><button class="quiz-opt" onclick="selectOption(this,'today-25')" data-value="impermanent"><span class="quiz-letter">A</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'today-25')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-25')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-25')" data-value="deficient"><span class="quiz-letter">D</span>deficient</button></div>
+          <div class="quiz-feedback" id="today-25-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 26</div>
           <div class="practice-q">The statue is ___ because it does not move.</div>
-          <button class="reveal" onclick="toggleAnswer('today-26')">Check answer</button>
-          <div class="practice-answer" id="today-26">stationary</div>
-          <div class="self-check" id="today-26-check"><button class="mark-btn right" onclick="markResult('today-26','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-26','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-26-options" data-correct="stationary"><button class="quiz-opt" onclick="selectOption(this,'today-26')" data-value="constant"><span class="quiz-letter">A</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-26')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-26')" data-value="stationary"><span class="quiz-letter">C</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-26')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="today-26-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 27</div>
           <div class="practice-q">The car stayed ___ at the red light.</div>
-          <button class="reveal" onclick="toggleAnswer('today-27')">Check answer</button>
-          <div class="practice-answer" id="today-27">stationary</div>
-          <div class="self-check" id="today-27-check"><button class="mark-btn right" onclick="markResult('today-27','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-27','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-27-options" data-correct="stationary"><button class="quiz-opt" onclick="selectOption(this,'today-27')" data-value="deficient"><span class="quiz-letter">A</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-27')" data-value="impermanent"><span class="quiz-letter">B</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'today-27')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-27')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="today-27-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 28</div>
           <div class="practice-q">The temperature stayed ___ at 70 degrees all morning.</div>
-          <button class="reveal" onclick="toggleAnswer('today-28')">Check answer</button>
-          <div class="practice-answer" id="today-28">constant</div>
-          <div class="self-check" id="today-28-check"><button class="mark-btn right" onclick="markResult('today-28','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-28','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-28-options" data-correct="constant"><button class="quiz-opt" onclick="selectOption(this,'today-28')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-28')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-28')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-28')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="today-28-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 29</div>
           <div class="practice-q">Her support was a ___ source of encouragement.</div>
-          <button class="reveal" onclick="toggleAnswer('today-29')">Check answer</button>
-          <div class="practice-answer" id="today-29">constant</div>
-          <div class="self-check" id="today-29-check"><button class="mark-btn right" onclick="markResult('today-29','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-29','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-29-options" data-correct="constant"><button class="quiz-opt" onclick="selectOption(this,'today-29')" data-value="deficient"><span class="quiz-letter">A</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'today-29')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-29')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-29')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="today-29-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 30</div>
           <div class="practice-q">If the speed never changes, it remains ___.</div>
-          <button class="reveal" onclick="toggleAnswer('today-30')">Check answer</button>
-          <div class="practice-answer" id="today-30">constant</div>
-          <div class="self-check" id="today-30-check"><button class="mark-btn right" onclick="markResult('today-30','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-30','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-30-options" data-correct="constant"><button class="quiz-opt" onclick="selectOption(this,'today-30')" data-value="constant"><span class="quiz-letter">A</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'today-30')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'today-30')" data-value="impermanent"><span class="quiz-letter">C</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'today-30')" data-value="deficient"><span class="quiz-letter">D</span>deficient</button></div>
+          <div class="quiz-feedback" id="today-30-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 31</div>
           <div class="practice-q">The recipe listed the exact ___ of the cake batter — flour, sugar, and eggs.</div>
-          <button class="reveal" onclick="toggleAnswer('today-31')">Check answer</button>
-          <div class="practice-answer" id="today-31">composition</div>
-          <div class="self-check" id="today-31-check"><button class="mark-btn right" onclick="markResult('today-31','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-31','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-31-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'today-31')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-31')" data-value="composition"><span class="quiz-letter">B</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-31')" data-value="facsimile"><span class="quiz-letter">C</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'today-31')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="today-31-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 32</div>
           <div class="practice-q">A chemist tested the ___ of the sample to find out which elements it contained.</div>
-          <button class="reveal" onclick="toggleAnswer('today-32')">Check answer</button>
-          <div class="practice-answer" id="today-32">composition</div>
-          <div class="self-check" id="today-32-check"><button class="mark-btn right" onclick="markResult('today-32','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-32','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-32-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'today-32')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-32')" data-value="facsimile"><span class="quiz-letter">B</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'today-32')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-32')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="today-32-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 33</div>
           <div class="practice-q">Which word means &#x27;what something is made of&#x27;: composition or circumstance?</div>
-          <button class="reveal" onclick="toggleAnswer('today-33')">Check answer</button>
-          <div class="practice-answer" id="today-33">composition</div>
-          <div class="self-check" id="today-33-check"><button class="mark-btn right" onclick="markResult('today-33','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-33','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-33-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'today-33')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-33')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button></div>
+          <div class="quiz-feedback" id="today-33-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 34</div>
           <div class="practice-q">Rain was the ___ that caused the picnic to move indoors.</div>
-          <button class="reveal" onclick="toggleAnswer('today-34')">Check answer</button>
-          <div class="practice-answer" id="today-34">circumstance</div>
-          <div class="self-check" id="today-34-check"><button class="mark-btn right" onclick="markResult('today-34','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-34','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-34-options" data-correct="circumstance"><button class="quiz-opt" onclick="selectOption(this,'today-34')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-34')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'today-34')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-34')" data-value="facsimile"><span class="quiz-letter">D</span>facsimile</button></div>
+          <div class="quiz-feedback" id="today-34-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 35</div>
           <div class="practice-q">Under these unusual ___, the school closed early.</div>
-          <button class="reveal" onclick="toggleAnswer('today-35')">Check answer</button>
-          <div class="practice-answer" id="today-35">circumstances</div>
-          <div class="self-check" id="today-35-check"><button class="mark-btn right" onclick="markResult('today-35','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-35','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-35-options" data-correct="circumstances"><button class="quiz-opt" onclick="selectOption(this,'today-35')" data-value="circumstances"><span class="quiz-letter">A</span>circumstances</button><button class="quiz-opt" onclick="selectOption(this,'today-35')" data-value="deposits"><span class="quiz-letter">B</span>deposits</button><button class="quiz-opt" onclick="selectOption(this,'today-35')" data-value="agendas"><span class="quiz-letter">C</span>agendas</button><button class="quiz-opt" onclick="selectOption(this,'today-35')" data-value="compositions"><span class="quiz-letter">D</span>compositions</button></div>
+          <div class="quiz-feedback" id="today-35-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Practice Question 36</div>
           <div class="practice-q">A family emergency was the ___ that changed our travel plans.</div>
-          <button class="reveal" onclick="toggleAnswer('today-36')">Check answer</button>
-          <div class="practice-answer" id="today-36">circumstance</div>
-          <div class="self-check" id="today-36-check"><button class="mark-btn right" onclick="markResult('today-36','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('today-36','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="today-36-options" data-correct="circumstance"><button class="quiz-opt" onclick="selectOption(this,'today-36')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'today-36')" data-value="agenda"><span class="quiz-letter">B</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'today-36')" data-value="facsimile"><span class="quiz-letter">C</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'today-36')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="today-36-feedback"></div>
         </div></div>
 <div class="match-game" id="today-match"><div class="kicker" style="margin-top:4px">Bonus round</div><h3 style="margin:4px 0 10px;font-family:inherit">🔀 Match Each Word to Its Meaning</h3><p class="small">A different way to practice: pick the meaning that goes with each word, then check your matches.</p><div class="match-grid"><div class="match-row" data-answer="conduct business"><span class="match-word">transact</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="be enough"><span class="match-word">suffice</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="lacking / not enough"><span class="match-word">deficient</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="a copy or imitation"><span class="match-word">facsimile</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="a list of things to discuss"><span class="match-word">agenda</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="makeup / what it is made of"><span class="match-word">composition</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="put / place / leave"><span class="match-word">deposit</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="temporary / not lasting"><span class="match-word">impermanent</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="not moving"><span class="match-word">stationary</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="staying the same"><span class="match-word">constant</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="situation or condition around an event"><span class="match-word">circumstance</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div></div><button class="reveal" onclick="checkMatches('today-match')">Check my matches</button><div class="match-result" id="today-match-result"></div></div>
 </section>
@@ -821,429 +784,369 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
     
 </section>
 
-<section class="section weekend" id="weekend"><div class="kicker">Save for the weekend</div><h2>🌈 5 extra similar questions for every missed item</h2><p>These 60 questions are intentionally separate from today's homework. Use them for quick reinforcement over the weekend. <button class="shuffle-btn" onclick="shuffleGrid('weekend-grid','Weekend Question')">🔀 Shuffle order</button></p>
-<div class="word-bank"><div class="word-bank-title">📦 Word bank — same 11 words, use each one more than once (hover a word for its meaning)</div><div class="word-bank-list"><span class="word-chip" title="a list of things to discuss">agenda</span><span class="word-chip" title="situation or condition around an event">circumstance</span><span class="word-chip" title="what something is made of">composition</span><span class="word-chip" title="staying the same">constant</span><span class="word-chip" title="lacking / not enough">deficient</span><span class="word-chip" title="put / place / leave">deposit</span><span class="word-chip" title="a copy or imitation">facsimile</span><span class="word-chip" title="temporary / not lasting">impermanent</span><span class="word-chip" title="not moving">stationary</span><span class="word-chip" title="be enough">suffice</span><span class="word-chip" title="conduct business">transact</span></div></div>
+<section class="section weekend" id="weekend"><div class="kicker">Save for the weekend</div><h2>🌈 5 extra similar questions for every missed item</h2><p>Same quiz format, 60 more questions — intentionally separate from today's homework for reinforcement over the weekend. <button class="shuffle-btn" onclick="shuffleGrid('weekend-grid','Weekend Question')">🔀 Shuffle order</button></p>
+<div class="word-bank"><div class="word-bank-title">📖 Word reference — same 11 words (hover a word for its meaning)</div><div class="word-bank-list"><span class="word-chip" title="a list of things to discuss">agenda</span><span class="word-chip" title="situation or condition around an event">circumstance</span><span class="word-chip" title="what something is made of">composition</span><span class="word-chip" title="staying the same">constant</span><span class="word-chip" title="lacking / not enough">deficient</span><span class="word-chip" title="put / place / leave">deposit</span><span class="word-chip" title="a copy or imitation">facsimile</span><span class="word-chip" title="temporary / not lasting">impermanent</span><span class="word-chip" title="not moving">stationary</span><span class="word-chip" title="be enough">suffice</span><span class="word-chip" title="conduct business">transact</span></div></div>
 <div class="progress-summary" id="weekend-grid-summary"><span class="progress-tally">0/60 answered · 0 correct · 0 need review</span><button class="reset-progress" onclick="resetProgress('weekend-grid')">↺ Reset progress</button><div class="weak-word-panel" style="display:none"><div class="weak-word-panel-title">📋 Words to review</div><div class="weak-word-list"></div></div></div>
 <div class="practice-grid" id="weekend-grid">
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 1</div>
           <div class="practice-q">The shop can ___ business even when the owner is away.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-1')">Check answer</button>
-          <div class="practice-answer" id="weekend-1">transact</div>
-          <div class="self-check" id="weekend-1-check"><button class="mark-btn right" onclick="markResult('weekend-1','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-1','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-1-options" data-correct="transact"><button class="quiz-opt" onclick="selectOption(this,'weekend-1')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-1')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-1')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-1')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="weekend-1-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 2</div>
           <div class="practice-q">The bank opened a branch so it could ___ business overseas.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-2')">Check answer</button>
-          <div class="practice-answer" id="weekend-2">transact</div>
-          <div class="self-check" id="weekend-2-check"><button class="mark-btn right" onclick="markResult('weekend-2','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-2','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-2-options" data-correct="transact"><button class="quiz-opt" onclick="selectOption(this,'weekend-2')" data-value="suffice"><span class="quiz-letter">A</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-2')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-2')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-2')" data-value="agenda"><span class="quiz-letter">D</span>agenda</button></div>
+          <div class="quiz-feedback" id="weekend-2-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 3</div>
           <div class="practice-q">We went to the office to ___ business with the insurance company.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-3')">Check answer</button>
-          <div class="practice-answer" id="weekend-3">transact</div>
-          <div class="self-check" id="weekend-3-check"><button class="mark-btn right" onclick="markResult('weekend-3','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-3','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-3-options" data-correct="transact"><button class="quiz-opt" onclick="selectOption(this,'weekend-3')" data-value="transact"><span class="quiz-letter">A</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-3')" data-value="deposit"><span class="quiz-letter">B</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-3')" data-value="suffice"><span class="quiz-letter">C</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-3')" data-value="agenda"><span class="quiz-letter">D</span>agenda</button></div>
+          <div class="quiz-feedback" id="weekend-3-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 4</div>
           <div class="practice-q">The website allows customers to ___ business from home.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-4')">Check answer</button>
-          <div class="practice-answer" id="weekend-4">transact</div>
-          <div class="self-check" id="weekend-4-check"><button class="mark-btn right" onclick="markResult('weekend-4','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-4','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-4-options" data-correct="transact"><button class="quiz-opt" onclick="selectOption(this,'weekend-4')" data-value="suffice"><span class="quiz-letter">A</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-4')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-4')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-4')" data-value="deposit"><span class="quiz-letter">D</span>deposit</button></div>
+          <div class="quiz-feedback" id="weekend-4-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 5</div>
           <div class="practice-q">A company must follow local laws when it ___ business in another country.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-5')">Check answer</button>
-          <div class="practice-answer" id="weekend-5">transacts</div>
-          <div class="self-check" id="weekend-5-check"><button class="mark-btn right" onclick="markResult('weekend-5','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-5','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-5-options" data-correct="transacts"><button class="quiz-opt" onclick="selectOption(this,'weekend-5')" data-value="suffices"><span class="quiz-letter">A</span>suffices</button><button class="quiz-opt" onclick="selectOption(this,'weekend-5')" data-value="transacts"><span class="quiz-letter">B</span>transacts</button><button class="quiz-opt" onclick="selectOption(this,'weekend-5')" data-value="deposits"><span class="quiz-letter">C</span>deposits</button></div>
+          <div class="quiz-feedback" id="weekend-5-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 6</div>
           <div class="practice-q">One flashlight should ___ for the short walk.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-6')">Check answer</button>
-          <div class="practice-answer" id="weekend-6">suffice</div>
-          <div class="self-check" id="weekend-6-check"><button class="mark-btn right" onclick="markResult('weekend-6','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-6','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-6-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'weekend-6')" data-value="suffice"><span class="quiz-letter">A</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-6')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-6')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-6')" data-value="deficient"><span class="quiz-letter">D</span>deficient</button></div>
+          <div class="quiz-feedback" id="weekend-6-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 7</div>
           <div class="practice-q">A single snack may not ___ for a long trip.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-7')">Check answer</button>
-          <div class="practice-answer" id="weekend-7">suffice</div>
-          <div class="self-check" id="weekend-7-check"><button class="mark-btn right" onclick="markResult('weekend-7','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-7','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-7-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'weekend-7')" data-value="deposit"><span class="quiz-letter">A</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-7')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-7')" data-value="transact"><span class="quiz-letter">C</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-7')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="weekend-7-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 8</div>
           <div class="practice-q">If five pencils are enough, they will ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-8')">Check answer</button>
-          <div class="practice-answer" id="weekend-8">suffice</div>
-          <div class="self-check" id="weekend-8-check"><button class="mark-btn right" onclick="markResult('weekend-8','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-8','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-8-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'weekend-8')" data-value="deficient"><span class="quiz-letter">A</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-8')" data-value="suffice"><span class="quiz-letter">B</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-8')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-8')" data-value="transact"><span class="quiz-letter">D</span>transact</button></div>
+          <div class="quiz-feedback" id="weekend-8-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 9</div>
           <div class="practice-q">Two examples should ___ to prove your point.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-9')">Check answer</button>
-          <div class="practice-answer" id="weekend-9">suffice</div>
-          <div class="self-check" id="weekend-9-check"><button class="mark-btn right" onclick="markResult('weekend-9','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-9','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-9-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'weekend-9')" data-value="transact"><span class="quiz-letter">A</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-9')" data-value="suffice"><span class="quiz-letter">B</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-9')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-9')" data-value="deficient"><span class="quiz-letter">D</span>deficient</button></div>
+          <div class="quiz-feedback" id="weekend-9-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 10</div>
           <div class="practice-q">Would one blanket ___ on a freezing night?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-10')">Check answer</button>
-          <div class="practice-answer" id="weekend-10">suffice</div>
-          <div class="self-check" id="weekend-10-check"><button class="mark-btn right" onclick="markResult('weekend-10','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-10','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-10-options" data-correct="suffice"><button class="quiz-opt" onclick="selectOption(this,'weekend-10')" data-value="deposit"><span class="quiz-letter">A</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-10')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-10')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-10')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="weekend-10-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 11</div>
           <div class="practice-q">If a machine lacks an important part, it may be ___ in what it needs to work.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-11')">Check answer</button>
-          <div class="practice-answer" id="weekend-11">deficient</div>
-          <div class="self-check" id="weekend-11-check"><button class="mark-btn right" onclick="markResult('weekend-11','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-11','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-11-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'weekend-11')" data-value="impermanent"><span class="quiz-letter">A</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-11')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-11')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-11')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="weekend-11-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 12</div>
           <div class="practice-q">The meal was ___ in protein because it had almost none.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-12')">Check answer</button>
-          <div class="practice-answer" id="weekend-12">deficient</div>
-          <div class="self-check" id="weekend-12-check"><button class="mark-btn right" onclick="markResult('weekend-12','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-12','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-12-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'weekend-12')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-12')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-12')" data-value="impermanent"><span class="quiz-letter">C</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-12')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="weekend-12-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 13</div>
           <div class="practice-q">The report was ___ in detail because it left out important facts.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-13')">Check answer</button>
-          <div class="practice-answer" id="weekend-13">deficient</div>
-          <div class="self-check" id="weekend-13-check"><button class="mark-btn right" onclick="markResult('weekend-13','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-13','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-13-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'weekend-13')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-13')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-13')" data-value="suffice"><span class="quiz-letter">C</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-13')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="weekend-13-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 14</div>
           <div class="practice-q">A person may feel tired if they are ___ in certain vitamins.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-14')">Check answer</button>
-          <div class="practice-answer" id="weekend-14">deficient</div>
-          <div class="self-check" id="weekend-14-check"><button class="mark-btn right" onclick="markResult('weekend-14','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-14','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-14-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'weekend-14')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-14')" data-value="impermanent"><span class="quiz-letter">B</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-14')" data-value="suffice"><span class="quiz-letter">C</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-14')" data-value="deficient"><span class="quiz-letter">D</span>deficient</button></div>
+          <div class="quiz-feedback" id="weekend-14-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 15</div>
           <div class="practice-q">The soil was ___ in water after weeks without rain.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-15')">Check answer</button>
-          <div class="practice-answer" id="weekend-15">deficient</div>
-          <div class="self-check" id="weekend-15-check"><button class="mark-btn right" onclick="markResult('weekend-15','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-15','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-15-options" data-correct="deficient"><button class="quiz-opt" onclick="selectOption(this,'weekend-15')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-15')" data-value="impermanent"><span class="quiz-letter">B</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-15')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-15')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="weekend-15-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 16</div>
           <div class="practice-q">The class studied a ___ of the old map while the original stayed protected.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-16')">Check answer</button>
-          <div class="practice-answer" id="weekend-16">facsimile</div>
-          <div class="self-check" id="weekend-16-check"><button class="mark-btn right" onclick="markResult('weekend-16','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-16','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-16-options" data-correct="facsimile"><button class="quiz-opt" onclick="selectOption(this,'weekend-16')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-16')" data-value="composition"><span class="quiz-letter">B</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-16')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-16')" data-value="facsimile"><span class="quiz-letter">D</span>facsimile</button></div>
+          <div class="quiz-feedback" id="weekend-16-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 17</div>
           <div class="practice-q">A printed copy can be a ___ of a handwritten page.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-17')">Check answer</button>
-          <div class="practice-answer" id="weekend-17">facsimile</div>
-          <div class="self-check" id="weekend-17-check"><button class="mark-btn right" onclick="markResult('weekend-17','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-17','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-17-options" data-correct="facsimile"><button class="quiz-opt" onclick="selectOption(this,'weekend-17')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-17')" data-value="deposit"><span class="quiz-letter">B</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-17')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-17')" data-value="facsimile"><span class="quiz-letter">D</span>facsimile</button></div>
+          <div class="quiz-feedback" id="weekend-17-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 18</div>
           <div class="practice-q">The exhibit used a ___ because the original was too valuable.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-18')">Check answer</button>
-          <div class="practice-answer" id="weekend-18">facsimile</div>
-          <div class="self-check" id="weekend-18-check"><button class="mark-btn right" onclick="markResult('weekend-18','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-18','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-18-options" data-correct="facsimile"><button class="quiz-opt" onclick="selectOption(this,'weekend-18')" data-value="facsimile"><span class="quiz-letter">A</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-18')" data-value="deposit"><span class="quiz-letter">B</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-18')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-18')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="weekend-18-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 19</div>
           <div class="practice-q">The teacher passed out a ___ of the famous painting.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-19')">Check answer</button>
-          <div class="practice-answer" id="weekend-19">facsimile</div>
-          <div class="self-check" id="weekend-19-check"><button class="mark-btn right" onclick="markResult('weekend-19','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-19','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-19-options" data-correct="facsimile"><button class="quiz-opt" onclick="selectOption(this,'weekend-19')" data-value="facsimile"><span class="quiz-letter">A</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-19')" data-value="agenda"><span class="quiz-letter">B</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-19')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-19')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="weekend-19-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 20</div>
           <div class="practice-q">Which is a facsimile: the original diploma or a copy of it?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-20')">Check answer</button>
-          <div class="practice-answer" id="weekend-20">a copy of it</div>
-          <div class="self-check" id="weekend-20-check"><button class="mark-btn right" onclick="markResult('weekend-20','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-20','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-20-options" data-correct="a copy of it"><button class="quiz-opt" onclick="selectOption(this,'weekend-20')" data-value="a copy of it"><span class="quiz-letter">A</span>a copy of it</button><button class="quiz-opt" onclick="selectOption(this,'weekend-20')" data-value="the original diploma"><span class="quiz-letter">B</span>the original diploma</button></div>
+          <div class="quiz-feedback" id="weekend-20-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 21</div>
           <div class="practice-q">A clear ___ helps a meeting stay organized.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-21')">Check answer</button>
-          <div class="practice-answer" id="weekend-21">agenda</div>
-          <div class="self-check" id="weekend-21-check"><button class="mark-btn right" onclick="markResult('weekend-21','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-21','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-21-options" data-correct="agenda"><button class="quiz-opt" onclick="selectOption(this,'weekend-21')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-21')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-21')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-21')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="weekend-21-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 22</div>
           <div class="practice-q">The class council put the dance discussion on its ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-22')">Check answer</button>
-          <div class="practice-answer" id="weekend-22">agenda</div>
-          <div class="self-check" id="weekend-22-check"><button class="mark-btn right" onclick="markResult('weekend-22','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-22','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-22-options" data-correct="agenda"><button class="quiz-opt" onclick="selectOption(this,'weekend-22')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-22')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-22')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-22')" data-value="transact"><span class="quiz-letter">D</span>transact</button></div>
+          <div class="quiz-feedback" id="weekend-22-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 23</div>
           <div class="practice-q">If the ___ is very long, the meeting may take extra time.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-23')">Check answer</button>
-          <div class="practice-answer" id="weekend-23">agenda</div>
-          <div class="self-check" id="weekend-23-check"><button class="mark-btn right" onclick="markResult('weekend-23','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-23','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-23-options" data-correct="agenda"><button class="quiz-opt" onclick="selectOption(this,'weekend-23')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-23')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-23')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-23')" data-value="transact"><span class="quiz-letter">D</span>transact</button></div>
+          <div class="quiz-feedback" id="weekend-23-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 24</div>
           <div class="practice-q">The teacher wrote the day&#x27;s ___ on the board.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-24')">Check answer</button>
-          <div class="practice-answer" id="weekend-24">agenda</div>
-          <div class="self-check" id="weekend-24-check"><button class="mark-btn right" onclick="markResult('weekend-24','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-24','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-24-options" data-correct="agenda"><button class="quiz-opt" onclick="selectOption(this,'weekend-24')" data-value="circumstance"><span class="quiz-letter">A</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-24')" data-value="composition"><span class="quiz-letter">B</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-24')" data-value="transact"><span class="quiz-letter">C</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-24')" data-value="agenda"><span class="quiz-letter">D</span>agenda</button></div>
+          <div class="quiz-feedback" id="weekend-24-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 25</div>
           <div class="practice-q">What would belong on an agenda: topics to discuss or yesterday&#x27;s weather?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-25')">Check answer</button>
-          <div class="practice-answer" id="weekend-25">topics to discuss</div>
-          <div class="self-check" id="weekend-25-check"><button class="mark-btn right" onclick="markResult('weekend-25','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-25','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-25-options" data-correct="topics to discuss"><button class="quiz-opt" onclick="selectOption(this,'weekend-25')" data-value="yesterday&#x27;s weather"><span class="quiz-letter">A</span>yesterday&#x27;s weather</button><button class="quiz-opt" onclick="selectOption(this,'weekend-25')" data-value="topics to discuss"><span class="quiz-letter">B</span>topics to discuss</button></div>
+          <div class="quiz-feedback" id="weekend-25-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 26</div>
           <div class="practice-q">The ___ of bronze includes copper and tin.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-26')">Check answer</button>
-          <div class="practice-answer" id="weekend-26">composition</div>
-          <div class="self-check" id="weekend-26-check"><button class="mark-btn right" onclick="markResult('weekend-26','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-26','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-26-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-26')" data-value="circumstance"><span class="quiz-letter">A</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-26')" data-value="facsimile"><span class="quiz-letter">B</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-26')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-26')" data-value="agenda"><span class="quiz-letter">D</span>agenda</button></div>
+          <div class="quiz-feedback" id="weekend-26-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 27</div>
           <div class="practice-q">Doctors can study the ___ of blood to see what it contains.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-27')">Check answer</button>
-          <div class="practice-answer" id="weekend-27">composition</div>
-          <div class="self-check" id="weekend-27-check"><button class="mark-btn right" onclick="markResult('weekend-27','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-27','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-27-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-27')" data-value="facsimile"><span class="quiz-letter">A</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-27')" data-value="agenda"><span class="quiz-letter">B</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-27')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-27')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="weekend-27-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 28</div>
           <div class="practice-q">The ___ of the mystery powder showed that it contained salt and sugar.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-28')">Check answer</button>
-          <div class="practice-answer" id="weekend-28">composition</div>
-          <div class="self-check" id="weekend-28-check"><button class="mark-btn right" onclick="markResult('weekend-28','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-28','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-28-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-28')" data-value="circumstance"><span class="quiz-letter">A</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-28')" data-value="agenda"><span class="quiz-letter">B</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-28')" data-value="facsimile"><span class="quiz-letter">C</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-28')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="weekend-28-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 29</div>
           <div class="practice-q">To learn what a planet is made of, scientists study its ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-29')">Check answer</button>
-          <div class="practice-answer" id="weekend-29">composition</div>
-          <div class="self-check" id="weekend-29-check"><button class="mark-btn right" onclick="markResult('weekend-29','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-29','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-29-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-29')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-29')" data-value="facsimile"><span class="quiz-letter">B</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-29')" data-value="circumstance"><span class="quiz-letter">C</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-29')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="weekend-29-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 30</div>
           <div class="practice-q">Which asks about composition: &#x27;What is it made of?&#x27; or &#x27;What happened around it?&#x27;</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-30')">Check answer</button>
-          <div class="practice-answer" id="weekend-30">What is it made of?</div>
-          <div class="self-check" id="weekend-30-check"><button class="mark-btn right" onclick="markResult('weekend-30','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-30','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-30-options" data-correct="What is it made of?"><button class="quiz-opt" onclick="selectOption(this,'weekend-30')" data-value="What happened around it?"><span class="quiz-letter">A</span>What happened around it?</button><button class="quiz-opt" onclick="selectOption(this,'weekend-30')" data-value="What is it made of?"><span class="quiz-letter">B</span>What is it made of?</button></div>
+          <div class="quiz-feedback" id="weekend-30-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 31</div>
           <div class="practice-q">The machine will ___ the package onto the conveyor belt.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-31')">Check answer</button>
-          <div class="practice-answer" id="weekend-31">deposit</div>
-          <div class="self-check" id="weekend-31-check"><button class="mark-btn right" onclick="markResult('weekend-31','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-31','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-31-options" data-correct="deposit"><button class="quiz-opt" onclick="selectOption(this,'weekend-31')" data-value="deposit"><span class="quiz-letter">A</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-31')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-31')" data-value="stationary"><span class="quiz-letter">C</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-31')" data-value="suffice"><span class="quiz-letter">D</span>suffice</button></div>
+          <div class="quiz-feedback" id="weekend-31-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 32</div>
           <div class="practice-q">We should ___ our muddy shoes by the door.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-32')">Check answer</button>
-          <div class="practice-answer" id="weekend-32">deposit</div>
-          <div class="self-check" id="weekend-32-check"><button class="mark-btn right" onclick="markResult('weekend-32','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-32','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-32-options" data-correct="deposit"><button class="quiz-opt" onclick="selectOption(this,'weekend-32')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-32')" data-value="deposit"><span class="quiz-letter">B</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-32')" data-value="suffice"><span class="quiz-letter">C</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-32')" data-value="transact"><span class="quiz-letter">D</span>transact</button></div>
+          <div class="quiz-feedback" id="weekend-32-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 33</div>
           <div class="practice-q">The delivery driver will ___ the groceries on the porch.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-33')">Check answer</button>
-          <div class="practice-answer" id="weekend-33">deposit</div>
-          <div class="self-check" id="weekend-33-check"><button class="mark-btn right" onclick="markResult('weekend-33','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-33','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-33-options" data-correct="deposit"><button class="quiz-opt" onclick="selectOption(this,'weekend-33')" data-value="suffice"><span class="quiz-letter">A</span>suffice</button><button class="quiz-opt" onclick="selectOption(this,'weekend-33')" data-value="transact"><span class="quiz-letter">B</span>transact</button><button class="quiz-opt" onclick="selectOption(this,'weekend-33')" data-value="deposit"><span class="quiz-letter">C</span>deposit</button><button class="quiz-opt" onclick="selectOption(this,'weekend-33')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="weekend-33-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 34</div>
           <div class="practice-q">The squirrel ___ the acorn in a hole for later.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-34')">Check answer</button>
-          <div class="practice-answer" id="weekend-34">deposited</div>
-          <div class="self-check" id="weekend-34-check"><button class="mark-btn right" onclick="markResult('weekend-34','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-34','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-34-options" data-correct="deposited"><button class="quiz-opt" onclick="selectOption(this,'weekend-34')" data-value="sufficed"><span class="quiz-letter">A</span>sufficed</button><button class="quiz-opt" onclick="selectOption(this,'weekend-34')" data-value="deposited"><span class="quiz-letter">B</span>deposited</button><button class="quiz-opt" onclick="selectOption(this,'weekend-34')" data-value="transacted"><span class="quiz-letter">C</span>transacted</button></div>
+          <div class="quiz-feedback" id="weekend-34-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 35</div>
           <div class="practice-q">If you deposit something, do you put it somewhere or eat it?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-35')">Check answer</button>
-          <div class="practice-answer" id="weekend-35">put it somewhere</div>
-          <div class="self-check" id="weekend-35-check"><button class="mark-btn right" onclick="markResult('weekend-35','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-35','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-35-options" data-correct="put it somewhere"><button class="quiz-opt" onclick="selectOption(this,'weekend-35')" data-value="eat it"><span class="quiz-letter">A</span>eat it</button><button class="quiz-opt" onclick="selectOption(this,'weekend-35')" data-value="put it somewhere"><span class="quiz-letter">B</span>put it somewhere</button></div>
+          <div class="quiz-feedback" id="weekend-35-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 36</div>
           <div class="practice-q">A temporary tattoo is ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-36')">Check answer</button>
-          <div class="practice-answer" id="weekend-36">impermanent</div>
-          <div class="self-check" id="weekend-36-check"><button class="mark-btn right" onclick="markResult('weekend-36','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-36','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-36-options" data-correct="impermanent"><button class="quiz-opt" onclick="selectOption(this,'weekend-36')" data-value="deficient"><span class="quiz-letter">A</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-36')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-36')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'weekend-36')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="weekend-36-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 37</div>
           <div class="practice-q">A snowman is usually ___ because it melts.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-37')">Check answer</button>
-          <div class="practice-answer" id="weekend-37">impermanent</div>
-          <div class="self-check" id="weekend-37-check"><button class="mark-btn right" onclick="markResult('weekend-37','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-37','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-37-options" data-correct="impermanent"><button class="quiz-opt" onclick="selectOption(this,'weekend-37')" data-value="impermanent"><span class="quiz-letter">A</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-37')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-37')" data-value="stationary"><span class="quiz-letter">C</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-37')" data-value="constant"><span class="quiz-letter">D</span>constant</button></div>
+          <div class="quiz-feedback" id="weekend-37-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 38</div>
           <div class="practice-q">A pencil mark can be ___ if it is erased.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-38')">Check answer</button>
-          <div class="practice-answer" id="weekend-38">impermanent</div>
-          <div class="self-check" id="weekend-38-check"><button class="mark-btn right" onclick="markResult('weekend-38','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-38','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-38-options" data-correct="impermanent"><button class="quiz-opt" onclick="selectOption(this,'weekend-38')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-38')" data-value="impermanent"><span class="quiz-letter">B</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-38')" data-value="constant"><span class="quiz-letter">C</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'weekend-38')" data-value="deficient"><span class="quiz-letter">D</span>deficient</button></div>
+          <div class="quiz-feedback" id="weekend-38-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 39</div>
           <div class="practice-q">The decorations were ___ and came down after the party.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-39')">Check answer</button>
-          <div class="practice-answer" id="weekend-39">impermanent</div>
-          <div class="self-check" id="weekend-39-check"><button class="mark-btn right" onclick="markResult('weekend-39','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-39','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-39-options" data-correct="impermanent"><button class="quiz-opt" onclick="selectOption(this,'weekend-39')" data-value="constant"><span class="quiz-letter">A</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'weekend-39')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-39')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-39')" data-value="impermanent"><span class="quiz-letter">D</span>impermanent</button></div>
+          <div class="quiz-feedback" id="weekend-39-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 40</div>
           <div class="practice-q">Which is more impermanent: a soap bubble or a mountain?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-40')">Check answer</button>
-          <div class="practice-answer" id="weekend-40">a soap bubble</div>
-          <div class="self-check" id="weekend-40-check"><button class="mark-btn right" onclick="markResult('weekend-40','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-40','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-40-options" data-correct="a soap bubble"><button class="quiz-opt" onclick="selectOption(this,'weekend-40')" data-value="a soap bubble"><span class="quiz-letter">A</span>a soap bubble</button><button class="quiz-opt" onclick="selectOption(this,'weekend-40')" data-value="a mountain"><span class="quiz-letter">B</span>a mountain</button></div>
+          <div class="quiz-feedback" id="weekend-40-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 41</div>
           <div class="practice-q">The storm remained ___ over the same area for hours.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-41')">Check answer</button>
-          <div class="practice-answer" id="weekend-41">stationary</div>
-          <div class="self-check" id="weekend-41-check"><button class="mark-btn right" onclick="markResult('weekend-41','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-41','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-41-options" data-correct="stationary"><button class="quiz-opt" onclick="selectOption(this,'weekend-41')" data-value="constant"><span class="quiz-letter">A</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'weekend-41')" data-value="impermanent"><span class="quiz-letter">B</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-41')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-41')" data-value="stationary"><span class="quiz-letter">D</span>stationary</button></div>
+          <div class="quiz-feedback" id="weekend-41-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 42</div>
           <div class="practice-q">Please keep the chair ___ while I fix it.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-42')">Check answer</button>
-          <div class="practice-answer" id="weekend-42">stationary</div>
-          <div class="self-check" id="weekend-42-check"><button class="mark-btn right" onclick="markResult('weekend-42','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-42','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-42-options" data-correct="stationary"><button class="quiz-opt" onclick="selectOption(this,'weekend-42')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-42')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-42')" data-value="impermanent"><span class="quiz-letter">C</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-42')" data-value="constant"><span class="quiz-letter">D</span>constant</button></div>
+          <div class="quiz-feedback" id="weekend-42-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 43</div>
           <div class="practice-q">A parked bus is ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-43')">Check answer</button>
-          <div class="practice-answer" id="weekend-43">stationary</div>
-          <div class="self-check" id="weekend-43-check"><button class="mark-btn right" onclick="markResult('weekend-43','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-43','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-43-options" data-correct="stationary"><button class="quiz-opt" onclick="selectOption(this,'weekend-43')" data-value="impermanent"><span class="quiz-letter">A</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-43')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-43')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-43')" data-value="constant"><span class="quiz-letter">D</span>constant</button></div>
+          <div class="quiz-feedback" id="weekend-43-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 44</div>
           <div class="practice-q">If the robot is stationary, it is not ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-44')">Check answer</button>
-          <div class="practice-answer" id="weekend-44">moving</div>
-          <div class="self-check" id="weekend-44-check"><button class="mark-btn right" onclick="markResult('weekend-44','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-44','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-44-options" data-correct="moving"><button class="quiz-opt" onclick="selectOption(this,'weekend-44')" data-value="moving"><span class="quiz-letter">A</span>moving</button><button class="quiz-opt" onclick="selectOption(this,'weekend-44')" data-value="changing"><span class="quiz-letter">B</span>changing</button><button class="quiz-opt" onclick="selectOption(this,'weekend-44')" data-value="stationary"><span class="quiz-letter">C</span>stationary</button></div>
+          <div class="quiz-feedback" id="weekend-44-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 45</div>
           <div class="practice-q">Which word means &#x27;not moving&#x27;: constant or stationary?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-45')">Check answer</button>
-          <div class="practice-answer" id="weekend-45">stationary</div>
-          <div class="self-check" id="weekend-45-check"><button class="mark-btn right" onclick="markResult('weekend-45','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-45','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-45-options" data-correct="stationary"><button class="quiz-opt" onclick="selectOption(this,'weekend-45')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-45')" data-value="constant"><span class="quiz-letter">B</span>constant</button></div>
+          <div class="quiz-feedback" id="weekend-45-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 46</div>
           <div class="practice-q">The dripping sound was a ___ noise all night.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-46')">Check answer</button>
-          <div class="practice-answer" id="weekend-46">constant</div>
-          <div class="self-check" id="weekend-46-check"><button class="mark-btn right" onclick="markResult('weekend-46','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-46','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-46-options" data-correct="constant"><button class="quiz-opt" onclick="selectOption(this,'weekend-46')" data-value="impermanent"><span class="quiz-letter">A</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-46')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-46')" data-value="stationary"><span class="quiz-letter">C</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-46')" data-value="constant"><span class="quiz-letter">D</span>constant</button></div>
+          <div class="quiz-feedback" id="weekend-46-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 47</div>
           <div class="practice-q">A ___ value does not change.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-47')">Check answer</button>
-          <div class="practice-answer" id="weekend-47">constant</div>
-          <div class="self-check" id="weekend-47-check"><button class="mark-btn right" onclick="markResult('weekend-47','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-47','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-47-options" data-correct="constant"><button class="quiz-opt" onclick="selectOption(this,'weekend-47')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-47')" data-value="deficient"><span class="quiz-letter">B</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-47')" data-value="impermanent"><span class="quiz-letter">C</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-47')" data-value="constant"><span class="quiz-letter">D</span>constant</button></div>
+          <div class="quiz-feedback" id="weekend-47-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 48</div>
           <div class="practice-q">The teacher asked us to keep the pressure ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-48')">Check answer</button>
-          <div class="practice-answer" id="weekend-48">constant</div>
-          <div class="self-check" id="weekend-48-check"><button class="mark-btn right" onclick="markResult('weekend-48','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-48','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-48-options" data-correct="constant"><button class="quiz-opt" onclick="selectOption(this,'weekend-48')" data-value="stationary"><span class="quiz-letter">A</span>stationary</button><button class="quiz-opt" onclick="selectOption(this,'weekend-48')" data-value="impermanent"><span class="quiz-letter">B</span>impermanent</button><button class="quiz-opt" onclick="selectOption(this,'weekend-48')" data-value="deficient"><span class="quiz-letter">C</span>deficient</button><button class="quiz-opt" onclick="selectOption(this,'weekend-48')" data-value="constant"><span class="quiz-letter">D</span>constant</button></div>
+          <div class="quiz-feedback" id="weekend-48-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 49</div>
           <div class="practice-q">If something is constant, it stays the ___.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-49')">Check answer</button>
-          <div class="practice-answer" id="weekend-49">same</div>
-          <div class="self-check" id="weekend-49-check"><button class="mark-btn right" onclick="markResult('weekend-49','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-49','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-49-options" data-correct="same"><button class="quiz-opt" onclick="selectOption(this,'weekend-49')" data-value="same"><span class="quiz-letter">A</span>same</button><button class="quiz-opt" onclick="selectOption(this,'weekend-49')" data-value="broken"><span class="quiz-letter">B</span>broken</button><button class="quiz-opt" onclick="selectOption(this,'weekend-49')" data-value="different"><span class="quiz-letter">C</span>different</button></div>
+          <div class="quiz-feedback" id="weekend-49-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 50</div>
           <div class="practice-q">Which word means &#x27;stays the same&#x27;: constant or stationary?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-50')">Check answer</button>
-          <div class="practice-answer" id="weekend-50">constant</div>
-          <div class="self-check" id="weekend-50-check"><button class="mark-btn right" onclick="markResult('weekend-50','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-50','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-50-options" data-correct="constant"><button class="quiz-opt" onclick="selectOption(this,'weekend-50')" data-value="constant"><span class="quiz-letter">A</span>constant</button><button class="quiz-opt" onclick="selectOption(this,'weekend-50')" data-value="stationary"><span class="quiz-letter">B</span>stationary</button></div>
+          <div class="quiz-feedback" id="weekend-50-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 51</div>
           <div class="practice-q">The lab tested the ___ of the water sample to see what minerals it contained.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-51')">Check answer</button>
-          <div class="practice-answer" id="weekend-51">composition</div>
-          <div class="self-check" id="weekend-51-check"><button class="mark-btn right" onclick="markResult('weekend-51','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-51','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-51-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-51')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-51')" data-value="composition"><span class="quiz-letter">B</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-51')" data-value="facsimile"><span class="quiz-letter">C</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-51')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="weekend-51-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 52</div>
           <div class="practice-q">Even though the company changed owners, its overall ___ — the products, staff, and mission — stayed the same.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-52')">Check answer</button>
-          <div class="practice-answer" id="weekend-52">composition</div>
-          <div class="self-check" id="weekend-52-check"><button class="mark-btn right" onclick="markResult('weekend-52','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-52','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-52-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-52')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-52')" data-value="composition"><span class="quiz-letter">B</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-52')" data-value="facsimile"><span class="quiz-letter">C</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-52')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="weekend-52-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 53</div>
           <div class="practice-q">A pie chart can show the ___ of a country&#x27;s population by age group.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-53')">Check answer</button>
-          <div class="practice-answer" id="weekend-53">composition</div>
-          <div class="self-check" id="weekend-53-check"><button class="mark-btn right" onclick="markResult('weekend-53','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-53','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-53-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-53')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-53')" data-value="agenda"><span class="quiz-letter">B</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-53')" data-value="circumstance"><span class="quiz-letter">C</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-53')" data-value="facsimile"><span class="quiz-letter">D</span>facsimile</button></div>
+          <div class="quiz-feedback" id="weekend-53-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 54</div>
           <div class="practice-q">Because of the unusual ___, both teachers agreed to reschedule the test to next week.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-54')">Check answer</button>
-          <div class="practice-answer" id="weekend-54">circumstance</div>
-          <div class="self-check" id="weekend-54-check"><button class="mark-btn right" onclick="markResult('weekend-54','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-54','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-54-options" data-correct="circumstance"><button class="quiz-opt" onclick="selectOption(this,'weekend-54')" data-value="circumstance"><span class="quiz-letter">A</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-54')" data-value="facsimile"><span class="quiz-letter">B</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-54')" data-value="composition"><span class="quiz-letter">C</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-54')" data-value="agenda"><span class="quiz-letter">D</span>agenda</button></div>
+          <div class="quiz-feedback" id="weekend-54-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 55</div>
           <div class="practice-q">If you want to know what something is made of, do you ask about its composition or its circumstance?</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-55')">Check answer</button>
-          <div class="practice-answer" id="weekend-55">composition</div>
-          <div class="self-check" id="weekend-55-check"><button class="mark-btn right" onclick="markResult('weekend-55','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-55','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-55-options" data-correct="composition"><button class="quiz-opt" onclick="selectOption(this,'weekend-55')" data-value="circumstance"><span class="quiz-letter">A</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-55')" data-value="composition"><span class="quiz-letter">B</span>composition</button></div>
+          <div class="quiz-feedback" id="weekend-55-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 56</div>
           <div class="practice-q">The weather was an important ___ affecting the game.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-56')">Check answer</button>
-          <div class="practice-answer" id="weekend-56">circumstance</div>
-          <div class="self-check" id="weekend-56-check"><button class="mark-btn right" onclick="markResult('weekend-56','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-56','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-56-options" data-correct="circumstance"><button class="quiz-opt" onclick="selectOption(this,'weekend-56')" data-value="agenda"><span class="quiz-letter">A</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-56')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-56')" data-value="facsimile"><span class="quiz-letter">C</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-56')" data-value="composition"><span class="quiz-letter">D</span>composition</button></div>
+          <div class="quiz-feedback" id="weekend-56-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 57</div>
           <div class="practice-q">We considered every ___ before making the decision.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-57')">Check answer</button>
-          <div class="practice-answer" id="weekend-57">circumstance</div>
-          <div class="self-check" id="weekend-57-check"><button class="mark-btn right" onclick="markResult('weekend-57','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-57','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-57-options" data-correct="circumstance"><button class="quiz-opt" onclick="selectOption(this,'weekend-57')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-57')" data-value="facsimile"><span class="quiz-letter">B</span>facsimile</button><button class="quiz-opt" onclick="selectOption(this,'weekend-57')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-57')" data-value="circumstance"><span class="quiz-letter">D</span>circumstance</button></div>
+          <div class="quiz-feedback" id="weekend-57-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 58</div>
           <div class="practice-q">Because of the difficult ___, the event was postponed.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-58')">Check answer</button>
-          <div class="practice-answer" id="weekend-58">circumstances</div>
-          <div class="self-check" id="weekend-58-check"><button class="mark-btn right" onclick="markResult('weekend-58','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-58','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-58-options" data-correct="circumstances"><button class="quiz-opt" onclick="selectOption(this,'weekend-58')" data-value="compositions"><span class="quiz-letter">A</span>compositions</button><button class="quiz-opt" onclick="selectOption(this,'weekend-58')" data-value="deposits"><span class="quiz-letter">B</span>deposits</button><button class="quiz-opt" onclick="selectOption(this,'weekend-58')" data-value="circumstances"><span class="quiz-letter">C</span>circumstances</button><button class="quiz-opt" onclick="selectOption(this,'weekend-58')" data-value="agendas"><span class="quiz-letter">D</span>agendas</button></div>
+          <div class="quiz-feedback" id="weekend-58-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 59</div>
           <div class="practice-q">A power outage was the ___ that stopped the movie.</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-59')">Check answer</button>
-          <div class="practice-answer" id="weekend-59">circumstance</div>
-          <div class="self-check" id="weekend-59-check"><button class="mark-btn right" onclick="markResult('weekend-59','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-59','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-59-options" data-correct="circumstance"><button class="quiz-opt" onclick="selectOption(this,'weekend-59')" data-value="composition"><span class="quiz-letter">A</span>composition</button><button class="quiz-opt" onclick="selectOption(this,'weekend-59')" data-value="circumstance"><span class="quiz-letter">B</span>circumstance</button><button class="quiz-opt" onclick="selectOption(this,'weekend-59')" data-value="agenda"><span class="quiz-letter">C</span>agenda</button><button class="quiz-opt" onclick="selectOption(this,'weekend-59')" data-value="facsimile"><span class="quiz-letter">D</span>facsimile</button></div>
+          <div class="quiz-feedback" id="weekend-59-feedback"></div>
         </div>
         <div class="practice-card">
           <div class="practice-meta">Weekend Question 60</div>
           <div class="practice-q">Which asks about circumstance: &#x27;What situation surrounded it?&#x27; or &#x27;What is it made of?&#x27;</div>
-          <button class="reveal" onclick="toggleAnswer('weekend-60')">Check answer</button>
-          <div class="practice-answer" id="weekend-60">What situation surrounded it?</div>
-          <div class="self-check" id="weekend-60-check"><button class="mark-btn right" onclick="markResult('weekend-60','right')">✅ Got it right</button><button class="mark-btn wrong" onclick="markResult('weekend-60','wrong')">❌ Need review</button></div>
+          <div class="quiz-options" id="weekend-60-options" data-correct="What situation surrounded it?"><button class="quiz-opt" onclick="selectOption(this,'weekend-60')" data-value="What is it made of?"><span class="quiz-letter">A</span>What is it made of?</button><button class="quiz-opt" onclick="selectOption(this,'weekend-60')" data-value="What situation surrounded it?"><span class="quiz-letter">B</span>What situation surrounded it?</button></div>
+          <div class="quiz-feedback" id="weekend-60-feedback"></div>
         </div></div>
 <div class="match-game" id="weekend-match"><div class="kicker" style="margin-top:4px">Bonus round</div><h3 style="margin:4px 0 10px;font-family:inherit">🔀 Match Each Word to Its Meaning</h3><p class="small">A different way to practice: pick the meaning that goes with each word, then check your matches.</p><div class="match-grid"><div class="match-row" data-answer="situation or condition around an event"><span class="match-word">circumstance</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="staying the same"><span class="match-word">constant</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="not moving"><span class="match-word">stationary</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="temporary / not lasting"><span class="match-word">impermanent</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="put / place / leave"><span class="match-word">deposit</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="makeup / what it is made of"><span class="match-word">composition</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="a list of things to discuss"><span class="match-word">agenda</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="a copy or imitation"><span class="match-word">facsimile</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="lacking / not enough"><span class="match-word">deficient</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="be enough"><span class="match-word">suffice</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div><div class="match-row" data-answer="conduct business"><span class="match-word">transact</span><select class="match-select"><option value="">Choose a meaning…</option><option>a copy or imitation</option><option>a list of things to discuss</option><option>be enough</option><option>conduct business</option><option>lacking / not enough</option><option>makeup / what it is made of</option><option>not moving</option><option>put / place / leave</option><option>situation or condition around an event</option><option>staying the same</option><option>temporary / not lasting</option></select></div></div><button class="reveal" onclick="checkMatches('weekend-match')">Check my matches</button><div class="match-result" id="weekend-match-result"></div></div>
 </section>
@@ -1251,12 +1154,27 @@ nav a{text-decoration:none;background:white;color:#42306e;font-weight:900;paddin
 <p class="small">Source note: recreated from the uploaded photographs of textbook pages 6–17. A few photographed handwritten marks were too unclear to interpret confidently, so those are labeled as unclear rather than guessed.</p>
 </main>
 <script>
-function toggleAnswer(id) {
-  const el=document.getElementById(id);
-  const show = el.style.display !== 'block';
-  el.style.display = show ? 'block' : 'none';
-  const check = document.getElementById(id+'-check');
-  if (check) check.style.display = show ? 'flex' : 'none';
+function selectOption(btn, cid) {
+  const container = document.getElementById(cid + '-options');
+  if (container.classList.contains('answered')) return;
+  container.classList.add('answered');
+  const correct = container.dataset.correct;
+  const chosen = btn.dataset.value;
+  container.querySelectorAll('.quiz-opt').forEach(b => {
+    b.classList.add('disabled');
+    if (b.dataset.value === correct) b.classList.add('correct');
+  });
+  const isRight = chosen === correct;
+  if (!isRight) btn.classList.add('incorrect');
+  const feedback = document.getElementById(cid + '-feedback');
+  feedback.textContent = isRight ? '✅ Correct!' : `❌ Not quite — the answer is "${correct}"`;
+  feedback.style.color = isRight ? '#1f8a53' : '#a32634';
+
+  const progress = loadProgress();
+  progress[cid] = isRight ? 'right' : 'wrong';
+  saveProgress(progress);
+  const grid = container.closest('.practice-grid');
+  if (grid) updateSummary(grid.id);
 }
 function shuffleGrid(gridId, label) {
   const grid = document.getElementById(gridId);
@@ -1279,17 +1197,17 @@ function loadProgress() {
 function saveProgress(p) {
   try { localStorage.setItem('vocabProgress', JSON.stringify(p)); } catch (e) {}
 }
-function markResult(id, result) {
-  const progress = loadProgress();
-  progress[id] = result;
-  saveProgress(progress);
-  const grid = document.getElementById(id).closest('.practice-grid');
-  if (grid) updateSummary(grid.id);
-}
 function resetProgress(gridId) {
   const progress = loadProgress();
   const grid = document.getElementById(gridId);
-  Array.from(grid.querySelectorAll('.practice-answer')).forEach(a => { delete progress[a.id]; });
+  Array.from(grid.querySelectorAll('.quiz-options')).forEach(opts => {
+    const cid = opts.id.replace(/-options$/, '');
+    delete progress[cid];
+    opts.classList.remove('answered');
+    opts.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('correct', 'incorrect', 'disabled'));
+    const feedback = document.getElementById(cid + '-feedback');
+    if (feedback) feedback.textContent = '';
+  });
   saveProgress(progress);
   updateSummary(gridId);
 }
@@ -1300,17 +1218,27 @@ function updateSummary(gridId) {
   let right = 0, wrong = 0, answered = 0;
   const weak = [];
   cards.forEach(card => {
-    const ansDiv = card.querySelector('.practice-answer');
-    if (!ansDiv) return;
-    const r = progress[ansDiv.id];
-    const btnRight = card.querySelector('.mark-btn.right');
-    const btnWrong = card.querySelector('.mark-btn.wrong');
-    if (btnRight) btnRight.classList.toggle('selected', r === 'right');
-    if (btnWrong) btnWrong.classList.toggle('selected', r === 'wrong');
+    const opts = card.querySelector('.quiz-options');
+    if (!opts) return;
+    const cid = opts.id.replace(/-options$/, '');
+    const correct = opts.dataset.correct;
+    const r = progress[cid];
     if (r) {
       answered++;
       if (r === 'right') right++;
-      else { wrong++; weak.push(ansDiv.textContent); }
+      else { wrong++; weak.push(correct); }
+      if (!opts.classList.contains('answered')) {
+        opts.classList.add('answered');
+        opts.querySelectorAll('.quiz-opt').forEach(b => {
+          b.classList.add('disabled');
+          if (b.dataset.value === correct) b.classList.add('correct');
+        });
+        const feedback = document.getElementById(cid + '-feedback');
+        if (feedback) {
+          feedback.textContent = r === 'right' ? '✅ Correct!' : `❌ Not quite — the answer is "${correct}"`;
+          feedback.style.color = r === 'right' ? '#1f8a53' : '#a32634';
+        }
+      }
     }
   });
   const summaryEl = document.getElementById(gridId + '-summary');
