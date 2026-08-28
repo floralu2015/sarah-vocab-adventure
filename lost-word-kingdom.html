@@ -93,53 +93,43 @@ h1{font-family:inherit;font-size:clamp(2rem,5vw,4rem);line-height:1;margin:.35re
 .mystery-label{font-size:.75rem;font-weight:1000;letter-spacing:.08em;color:#aa6c16}
 
 
-.progress-main-title{margin:14px 2px 8px;font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
-.progress-dashboard{display:grid;grid-template-columns:1.15fr 1.3fr 1fr;gap:14px;margin:6px 0 20px;animation:dashIn .5s ease both}
-@keyframes dashIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.progress-card{background:rgba(255,255,255,.96);border:1px solid rgba(105,88,170,.10);border-radius:22px;padding:19px;box-shadow:0 10px 28px rgba(69,54,120,.08)}
-.progress-card.overall{position:relative;overflow:hidden;background:linear-gradient(150deg,#fff 0%,#f7f3ff 55%,#f1f8ff 100%);display:flex;flex-direction:column}
-.progress-card.overall .readiness-row{flex:1}
-.progress-card.overall:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;top:-60px;background:radial-gradient(circle,rgba(124,92,255,.12),transparent 70%)}
-.progress-label{font-size:.74rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#8578ac}
+.progress-main-title{margin:12px 2px 6px;font-size:1.05rem;font-weight:800;letter-spacing:-.01em}
+.progress-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(255,255,255,.96);border:1px solid rgba(105,88,170,.10);border-radius:18px;padding:10px 14px;box-shadow:0 8px 20px rgba(69,54,120,.07);margin:0 0 6px}
 
-.readiness-row{display:flex;align-items:center;gap:16px;margin-top:12px;position:relative;z-index:1}
-.readiness-ring{position:relative;width:104px;height:104px;flex-shrink:0}
-.readiness-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.readiness-ring circle{fill:none;stroke-width:11}
+.ready-mini{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.ready-mini svg{width:38px;height:38px;transform:rotate(-90deg)}
+.ready-mini circle{fill:none;stroke-width:5}
 .ring-track{stroke:#ede8fb}
-.ring-fill{stroke:url(#ringGrad);stroke-linecap:round;stroke-dasharray:257.6;stroke-dashoffset:257.6;transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1)}
-.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ring-pct{font-size:1.5rem;font-weight:800;color:#5b3ee5;line-height:1}
-.ring-tag{font-size:.58rem;font-weight:700;color:#9a90bb;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
-.readiness-copy{font-size:.92rem;line-height:1.45;color:#5c5578;font-weight:500}
-.readiness-formula{position:relative;z-index:1;margin-top:16px;padding-top:12px;border-top:1px solid rgba(105,88,170,.12);font-size:.7rem;font-weight:600;color:#948bb2;letter-spacing:.01em}
+.ring-fill{stroke:url(#ringGrad);stroke-linecap:round;stroke-dasharray:100.5;stroke-dashoffset:100.5;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)}
+.ready-mini-text{display:flex;flex-direction:column;line-height:1.05}
+.ready-mini-text b{font-size:1rem;font-weight:800;color:#5b3ee5}
+.ready-mini-text span{font-size:.56rem;font-weight:700;color:#9a90bb;text-transform:uppercase;letter-spacing:.05em}
 
-.chapter-track{display:flex;flex-direction:column;gap:7px;margin-top:12px}
-.chapter-step{padding:9px 11px;border-radius:14px;background:#f8f6ff;border:1px solid #eee9ff;display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;transition:.25s}
-.chapter-step .step-icon{position:relative;width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid #ded5f7;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.25s}
-.chapter-step b{font-size:.85rem;font-weight:700;display:block}
-.chapter-step small{font-size:.71rem;color:#8a82a1;font-weight:600}
-.chapter-step.active{background:#f1ecff;border-color:#c3b3ff;box-shadow:0 4px 14px rgba(124,92,255,.14)}
-.chapter-step.active .step-icon{border-color:#7c5cff;background:#7c5cff;animation:stepPulse 1.6s ease-in-out infinite}
-.chapter-step.done{background:#eefaf4;border-color:#bcebd9}
-.chapter-step.done .step-icon{border-color:#3bb586;background:#3bb586}
-.chapter-step.done .step-icon:before{content:"✓";color:#fff;font-weight:900}
-.chapter-step.done .step-icon span{display:none}
-@keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(124,92,255,.35)}50%{box-shadow:0 0 0 6px rgba(124,92,255,0)}}
+.progress-divider{width:1px;align-self:stretch;background:rgba(105,88,170,.12);flex-shrink:0}
 
-.snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.snapshot{padding:13px 10px;border-radius:16px;text-align:center;background:#faf8ff;border:1px solid rgba(105,88,170,.08);transition:.2s}
-.snapshot:hover{transform:translateY(-2px)}
-.snapshot .snap-icon{font-size:1.05rem;display:block;margin-bottom:2px}
-.snapshot strong{display:block;font-size:1.5rem;font-weight:800;line-height:1.1}
-.snapshot span{font-size:.66rem;color:#7d7691;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.snapshot.mastered{background:#eefaf4}.snapshot.mastered strong{color:#2f9f78}
-.snapshot.weak{background:#fff1f6}.snapshot.weak strong{color:#e0568c}
-.snapshot.best{background:#fff9ea}.snapshot.best strong{color:#c9911a}
-.snapshot.tests{background:#eef6ff}.snapshot.tests strong{color:#3a7fd6}
+.quest-steps{display:flex;gap:5px;flex:1;min-width:220px;flex-wrap:wrap}
+.qstep{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px;border-radius:11px;background:#f8f6ff;border:1px solid #eee9ff;min-width:46px;transition:.2s}
+.qstep-icon{position:relative;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid #ded5f7;display:flex;align-items:center;justify-content:center;font-size:.66rem;transition:.2s}
+.qstep small{font-size:.54rem;font-weight:700;color:#8a82a1;white-space:nowrap}
+.qstep.active{background:#f1ecff;border-color:#c3b3ff}
+.qstep.active .qstep-icon{border-color:#7c5cff;background:#7c5cff;animation:stepPulse 1.6s ease-in-out infinite}
+.qstep.done{background:#eefaf4;border-color:#bcebd9}
+.qstep.done .qstep-icon{border-color:#3bb586;background:#3bb586}
+.qstep.done .qstep-icon:before{content:"✓";color:#fff;font-weight:900;font-size:.6rem}
+.qstep.done .qstep-icon span{display:none}
+@keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(124,92,255,.35)}50%{box-shadow:0 0 0 5px rgba(124,92,255,0)}}
 
-@media(max-width:900px){.progress-dashboard{grid-template-columns:1fr}}
-@media(max-width:600px){.snapshot-grid{grid-template-columns:1fr 1fr}}
+.quest-stats{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap}
+.qstat{display:flex;align-items:center;gap:4px;padding:5px 9px;border-radius:999px;font-size:.7rem;font-weight:700;white-space:nowrap}
+.qstat strong{font-size:.78rem}
+.qstat.mastered{background:#eefaf4;color:#2f9f78}
+.qstat.weak{background:#fff1f6;color:#e0568c}
+.qstat.best{background:#fff9ea;color:#c9911a}
+.qstat.tests{background:#eef6ff;color:#3a7fd6}
+
+.readiness-copy{font-size:.78rem;color:#8578ac;margin:0 2px 14px;font-weight:600}
+
+@media(max-width:640px){.progress-divider{display:none}}
 
 @media(max-width:760px){.map{grid-template-columns:1fr 1fr}.map button:last-child{grid-column:1/-1}.choices{grid-template-columns:1fr}.arcade-grid{grid-template-columns:1fr}.hero-card{padding:22px}.card{padding:17px}}
 </style>
@@ -171,54 +161,43 @@ h1{font-family:inherit;font-size:clamp(2rem,5vw,4rem);line-height:1;margin:.35re
 </header>
 
 <h2 class="progress-main-title">📊 Sarah’s Quest Progress</h2>
-<section id="progressDashboard" class="progress-dashboard">
-  <div class="progress-card overall">
-    <div class="progress-label">🏆 Overall Readiness</div>
-    <div class="readiness-row">
-      <div class="readiness-ring">
-        <svg viewBox="0 0 104 104">
-          <defs>
-            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#67d9b5"/>
-              <stop offset="55%" stop-color="#65c7ff"/>
-              <stop offset="100%" stop-color="#7c5cff"/>
-            </linearGradient>
-          </defs>
-          <circle class="ring-track" cx="52" cy="52" r="41"/>
-          <circle class="ring-fill" id="ringFill" cx="52" cy="52" r="41"/>
-        </svg>
-        <div class="ring-label">
-          <div class="ring-pct" id="overallReadiness">0%</div>
-          <div class="ring-tag">Ready</div>
-        </div>
-      </div>
-      <div class="readiness-copy" id="readinessCopy">Start your quest to build test readiness.</div>
-    </div>
-    <div class="readiness-formula">🗺️ Chapters 30% · 💎 Mastery 30% · 📝 Best test 40%</div>
+<section id="progressDashboard" class="progress-bar">
+  <div class="ready-mini">
+    <svg viewBox="0 0 44 44">
+      <defs>
+        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#67d9b5"/>
+          <stop offset="55%" stop-color="#65c7ff"/>
+          <stop offset="100%" stop-color="#7c5cff"/>
+        </linearGradient>
+      </defs>
+      <circle class="ring-track" cx="22" cy="22" r="16"/>
+      <circle class="ring-fill" id="ringFill" cx="22" cy="22" r="16"/>
+    </svg>
+    <div class="ready-mini-text"><b id="overallReadiness">0%</b><span>Ready</span></div>
   </div>
 
-  <div class="progress-card">
-    <div class="progress-label">🗺️ Quest Progress</div>
-    <div class="chapter-track">
-      <div class="chapter-step" data-step="power"><span class="step-icon"><span>⚡</span></span><div><b>Power-Up</b><small id="powerStatus">Not started</small></div></div>
-      <div class="chapter-step" data-step="rescue"><span class="step-icon"><span>👾</span></span><div><b>Rescue</b><small id="rescueStatus">Not started</small></div></div>
-      <div class="chapter-step" data-step="detective"><span class="step-icon"><span>🔎</span></span><div><b>Detective</b><small id="detectiveStatus">Not started</small></div></div>
-      <div class="chapter-step" data-step="arcade"><span class="step-icon"><span>🎮</span></span><div><b>Arcade</b><small id="arcadeStatus">Not started</small></div></div>
-      <div class="chapter-step" data-step="boss"><span class="step-icon"><span>🏰</span></span><div><b>Final Boss</b><small id="bossStatus">Not started</small></div></div>
-      <div class="chapter-step" data-step="realtest"><span class="step-icon"><span>📝</span></span><div><b>Real Test</b><small id="realtestStatus">Not started</small></div></div>
-    </div>
+  <div class="progress-divider"></div>
+
+  <div class="quest-steps">
+    <div class="qstep" data-step="power" title="Power-Up"><span class="qstep-icon"><span>⚡</span></span><small>Power</small></div>
+    <div class="qstep" data-step="rescue" title="Mistake Monster Rescue"><span class="qstep-icon"><span>👾</span></span><small>Rescue</small></div>
+    <div class="qstep" data-step="detective" title="Word Detective Cave"><span class="qstep-icon"><span>🔎</span></span><small>Detect</small></div>
+    <div class="qstep" data-step="arcade" title="Vocabulary Arcade"><span class="qstep-icon"><span>🎮</span></span><small>Arcade</small></div>
+    <div class="qstep" data-step="boss" title="Final Boss Castle"><span class="qstep-icon"><span>🏰</span></span><small>Boss</small></div>
+    <div class="qstep" data-step="realtest" title="Real Test Lab"><span class="qstep-icon"><span>📝</span></span><small>Test</small></div>
   </div>
 
-  <div class="progress-card">
-    <div class="progress-label">📈 Learning Snapshot</div>
-    <div class="snapshot-grid">
-      <div class="snapshot mastered"><span class="snap-icon">💎</span><strong id="snapMastered">0</strong><span>Words mastered</span></div>
-      <div class="snapshot weak"><span class="snap-icon">❤️</span><strong id="snapWeak">0</strong><span>Rescue words</span></div>
-      <div class="snapshot best"><span class="snap-icon">🏅</span><strong id="snapBest">—</strong><span>Best test score</span></div>
-      <div class="snapshot tests"><span class="snap-icon">📝</span><strong id="snapTests">0</strong><span>Tests completed</span></div>
-    </div>
+  <div class="progress-divider"></div>
+
+  <div class="quest-stats">
+    <div class="qstat mastered">💎 <strong id="snapMastered">0</strong></div>
+    <div class="qstat weak">❤️ <strong id="snapWeak">0</strong></div>
+    <div class="qstat best">🏅 <strong id="snapBest">—</strong></div>
+    <div class="qstat tests">📝 <strong id="snapTests">0</strong></div>
   </div>
 </section>
+<div class="readiness-copy" id="readinessCopy">Start your quest to build test readiness.</div>
 
 
 <nav class="map" aria-label="Quest map">
@@ -700,14 +679,10 @@ function markChapter(name,status="done"){
   save();
 }
 function updateProgress(){
-  const statuses={
-    power:"powerStatus",rescue:"rescueStatus",detective:"detectiveStatus",
-    arcade:"arcadeStatus",boss:"bossStatus",realtest:"realtestStatus"
-  };
-  Object.entries(statuses).forEach(([key,id])=>{
-    const el=$(id),step=document.querySelector(`.chapter-step[data-step="${key}"]`);
+  const steps=["power","rescue","detective","arcade","boss","realtest"];
+  steps.forEach(key=>{
+    const step=document.querySelector(`.qstep[data-step="${key}"]`);
     const st=state.chapters[key]||"not";
-    if(el) el.textContent=st==="done"?"Complete ✓":st==="started"?"In progress":"Not started";
     if(step){step.classList.toggle("done",st==="done");step.classList.toggle("active",st==="started");}
   });
   const completed=Object.values(state.chapters).filter(x=>x==="done").length;
@@ -721,7 +696,7 @@ function updateProgress(){
   if($("overallReadiness"))$("overallReadiness").textContent=readiness+"%";
   const ringFill=$("ringFill");
   if(ringFill){
-    const circumference=2*Math.PI*41;
+    const circumference=2*Math.PI*16;
     ringFill.style.strokeDashoffset=circumference*(1-readiness/100);
   }
   if($("readinessCopy")){
